@@ -1,0 +1,11 @@
+﻿  RenderManager.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(14): error C2143: syntax error: missing ';' before '&'
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(14): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(14): error C2238: unexpected token(s) preceding ';'
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(20): error C2143: syntax error: missing ';' before '*'
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(20): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(20): error C2086: 'int EngineTools::RenderManager': redefinition
+  d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(14): note: see declaration of 'EngineTools::RenderManager'
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\enginetools.h(20): error C2238: unexpected token(s) preceding ';'
+  EngineTools.cpp
+  Generating Code...

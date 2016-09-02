@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\GameLoop">
+      <UniqueIdentifier>{e38c8e17-6a23-4c4f-9678-40f210af902f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameLoop">
+      <UniqueIdentifier>{10d0d566-e257-46bb-8b9e-2510f98f2b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{bed42edd-d286-4138-97d2-77f4344471cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{1891c46d-44a3-40bb-a024-fa3fc0380ab6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\InputManager">
+      <UniqueIdentifier>{e828d74c-5776-48c8-8567-cdf3c12df8aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\InputManager">
+      <UniqueIdentifier>{10326d4f-bb1d-4567-b066-ad9e08cd4f93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens">
+      <UniqueIdentifier>{d59e5b4e-43f0-469d-a003-344cde7f37d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\Gameplay">
+      <UniqueIdentifier>{3deff099-1b29-4adc-b792-b44c1af8eeb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\MainMenu">
+      <UniqueIdentifier>{30d2f7da-0f36-4c52-b200-2ffc507b504e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens">
+      <UniqueIdentifier>{5d305053-754b-4807-8575-b468a3e03653}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Gameplay">
+      <UniqueIdentifier>{19057e2e-ae43-4eda-96b7-ca1b9b2070cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\MainMenu">
+      <UniqueIdentifier>{520aee5a-011b-478f-a8d2-2e49b6704960}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine\RenderManager">
+      <UniqueIdentifier>{0f36a5e5-2ff4-4739-8bbe-0cba3fe8bea6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine\RenderManager">
+      <UniqueIdentifier>{3f5c55a8-e035-46da-a907-93435057d5e8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameLoop.cpp">
+      <Filter>Source Files\GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\GameLoop</Filter>
+    </ClCompile>
+    <ClCompile Include="Gameplay.cpp">
+      <Filter>Source Files\Screens\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Screens\MainMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEngine.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomInputManager.cpp">
+      <Filter>Source Files\Engine\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineTools.cpp">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderManager.cpp">
+      <Filter>Source Files\Engine\RenderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Source Files\Engine\RenderManager</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLoop.h">
+      <Filter>Header Files\GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files\GameLoop</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameplay.h">
+      <Filter>Header Files\Screens\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\Screens\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEngine.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomInputManager.h">
+      <Filter>Header Files\Engine\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTools.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderManager.h">
+      <Filter>Header Files\Engine\RenderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Header Files\Engine\RenderManager</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
