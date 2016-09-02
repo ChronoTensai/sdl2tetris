@@ -2,26 +2,27 @@
 
 #include <stdio.h>
 #include <string>
+#include <SDL.h>
 #include "EngineTools.h"
-
-class RectSprite
-{
-public:
-	int X;
-	int Y;
-	int Widht;
-	int Height;
-};
 
 class Sprite
 {
 	public:
-		Sprite(std::string path);
-		RectSprite RectS;	 
-		void Sprite::AddSprite(RectSprite rect);
+		Sprite(std::string path, int x, int y, int w, int h);
+		void AddSprite();
+		void PositionX(int value);
+		void PositionY(int value);
+		void Width(int value);
+		void Height(int value);
 		~Sprite();
 	private:
-		SDL_Texture* _texture;
+		bool drawed;
+		SDL_Texture* sourceTexture;
+		SDL_Rect Rect;
 };
+
+
+
+
 
 

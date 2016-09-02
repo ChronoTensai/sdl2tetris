@@ -1,8 +1,8 @@
 #pragma once
 
-#include <assert.h>
-#include "CustomInputManager.h"
 #include "RenderManager.h"
+#include "CustomInputManager.h"
+#include <assert.h>
 
 
 class EngineTools
@@ -10,8 +10,8 @@ class EngineTools
 	public:
 		static void InitializeEngineTools(CustomInputManager* iM, SDL_Window* win, SDL_Renderer* renderer);
 		static void FinalizeEngineTools();
-		static CustomInputManager & InputService();
-		static RenderManager & RenderService();
+		static CustomInputManager& InputService();
+		static RenderManager& RenderService();
 		~EngineTools();
 	private:
 		EngineTools();

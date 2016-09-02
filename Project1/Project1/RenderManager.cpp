@@ -27,17 +27,10 @@ SDL_Texture* RenderManager::LoadTexture(std::string path)
 	return _texture;
 }
 
-/*void RenderManager::RenderTexture(RectSprite rectTexture , SDL_Texture* source)
+void RenderManager::RenderTexture(SDL_Rect rectTexture, SDL_Texture * source)
 {
-	SDL_Rect rect;
-	rect.x = rectTexture.X;
-	rect.y = rectTexture.Y;
-	rect.w = rectTexture.Widht;
-	rect.h = rectTexture.Height;
-
-	SDL_RenderCopy(gRenderer, source, NULL, &rect);
-}*/
-	
+	SDL_RenderCopy(gRenderer, source, NULL, &rectTexture);
+}
 
 RenderManager::~RenderManager() 
 {
