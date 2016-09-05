@@ -34,17 +34,11 @@
     <Filter Include="Source Files\Screens">
       <UniqueIdentifier>{d59e5b4e-43f0-469d-a003-344cde7f37d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Screens\Gameplay">
-      <UniqueIdentifier>{3deff099-1b29-4adc-b792-b44c1af8eeb8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Screens\MainMenu">
       <UniqueIdentifier>{30d2f7da-0f36-4c52-b200-2ffc507b504e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Screens">
       <UniqueIdentifier>{5d305053-754b-4807-8575-b468a3e03653}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Screens\Gameplay">
-      <UniqueIdentifier>{19057e2e-ae43-4eda-96b7-ca1b9b2070cd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Screens\MainMenu">
       <UniqueIdentifier>{520aee5a-011b-478f-a8d2-2e49b6704960}</UniqueIdentifier>
@@ -54,6 +48,18 @@
     </Filter>
     <Filter Include="Source Files\Engine\RenderManager">
       <UniqueIdentifier>{3f5c55a8-e035-46da-a907-93435057d5e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Game">
+      <UniqueIdentifier>{19057e2e-ae43-4eda-96b7-ca1b9b2070cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\Game">
+      <UniqueIdentifier>{3deff099-1b29-4adc-b792-b44c1af8eeb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Screens\Game\Tetriminios">
+      <UniqueIdentifier>{8395b694-8984-4317-9a3c-ae4aa1dec861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Screens\Game\Tetriminios">
+      <UniqueIdentifier>{5fc5de1a-0f08-46eb-ba5a-c389e118440e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +71,6 @@
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Source Files\GameLoop</Filter>
-    </ClCompile>
-    <ClCompile Include="Gameplay.cpp">
-      <Filter>Source Files\Screens\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files\Screens\MainMenu</Filter>
@@ -87,6 +90,36 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files\Engine\RenderManager</Filter>
     </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Screens\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Board.cpp">
+      <Filter>Source Files\Screens\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Tetrimino.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="IBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="JBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="LBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="OBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="SBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="TBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
+    <ClCompile Include="ZBlock.cpp">
+      <Filter>Source Files\Screens\Game\Tetriminios</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -97,9 +130,6 @@
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files\GameLoop</Filter>
-    </ClInclude>
-    <ClInclude Include="Gameplay.h">
-      <Filter>Header Files\Screens\Gameplay</Filter>
     </ClInclude>
     <ClInclude Include="MainMenu.h">
       <Filter>Header Files\Screens\MainMenu</Filter>
@@ -118,6 +148,39 @@
     </ClInclude>
     <ClInclude Include="Sprite.h">
       <Filter>Header Files\Engine\RenderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="InputDefintion.h">
+      <Filter>Header Files\Engine\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Screens\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Board.h">
+      <Filter>Header Files\Screens\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Tetrimino.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="IBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="JBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="LBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="OBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="SBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="TBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
+    </ClInclude>
+    <ClInclude Include="ZBlock.h">
+      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

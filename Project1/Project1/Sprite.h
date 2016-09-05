@@ -9,7 +9,8 @@ class Sprite
 {
 	public:
 		Sprite(std::string path, int x, int y, int w, int h);
-		void AddSprite();
+		void Add();
+		void Tint(float r, float g, float b);
 		void PositionX(int value);
 		void PositionY(int value);
 		void Width(int value);

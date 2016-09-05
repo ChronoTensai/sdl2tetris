@@ -41,11 +41,17 @@ void Sprite::Height(int value)
 
 
 
-void Sprite::AddSprite()
+void Sprite::Add()
 {
 	drawed = true;
 	EngineTools::RenderService().RenderTexture(Rect, sourceTexture);
 }
+
+void Sprite::Tint(float r, float g, float b)
+{
+	EngineTools::RenderService().TintTexture(sourceTexture,r,g,b);
+}
+
 
 
 

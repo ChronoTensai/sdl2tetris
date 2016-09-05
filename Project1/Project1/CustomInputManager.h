@@ -2,11 +2,16 @@
 #ifndef CustomInputManager_H
 #endif CustomInputManager_H
 
+
 #include <SDL_system.h>
 #include <SDL.h>
-#include <stdio.h>
-#include <string>
 #include <map>
+#include "InputDefintion.h"
+
+using namespace std;
+using InputDefinition::InputKeys;
+
+typedef void(*inputCallback)();
 
 class CustomInputManager
 {
@@ -14,5 +19,9 @@ class CustomInputManager
 		CustomInputManager();
 		~CustomInputManager();
 		void CheckInputs(SDL_Event e);
-		void RegisterInput(Uint32 InputKey, void(*callback)());
+		void RegisterInput(InputKeys InputKey, void(*callback)());
+		void ClearInputs();
+	private:
+		map<InputKeys, inputCallback> InputMapping;
+		map<Uint32, InputKeys> InputRegisters;
 };

@@ -59,7 +59,7 @@ bool GameEngine::Start()
 
 void GameEngine::BeforeUpdate(bool* running)
 {
-	SDL_RenderClear(renderer);
+	//SDL_RenderClear(renderer);
 
 	while (SDL_PollEvent(&Event) != 0)
 	{

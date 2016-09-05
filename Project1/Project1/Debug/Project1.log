@@ -1,3 +1,5 @@
-﻿  GameManager.cpp
+﻿  Tetrimino.cpp
+  LBlock.cpp
+  Generating Code...
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.exe
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.pdb (Partial PDB)

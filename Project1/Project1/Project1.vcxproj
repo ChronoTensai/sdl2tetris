@@ -118,28 +118,47 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="IBlock.cpp" />
+    <ClCompile Include="JBlock.cpp" />
+    <ClCompile Include="LBlock.cpp" />
+    <ClCompile Include="OBlock.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="EngineTools.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="Gameplay.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="CustomInputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="SBlock.cpp" />
     <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="TBlock.cpp" />
+    <ClCompile Include="Tetrimino.cpp" />
+    <ClCompile Include="ZBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="IBlock.h" />
+    <ClInclude Include="InputDefintion.h" />
+    <ClInclude Include="JBlock.h" />
+    <ClInclude Include="LBlock.h" />
+    <ClInclude Include="OBlock.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="EngineTools.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Gameplay.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="CustomInputManager.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="SBlock.h" />
     <ClInclude Include="Sprite.h" />
+    <ClInclude Include="TBlock.h" />
+    <ClInclude Include="Tetrimino.h" />
+    <ClInclude Include="ZBlock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
