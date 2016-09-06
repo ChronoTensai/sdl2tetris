@@ -1,5 +1,12 @@
 #pragma once
 #include "Sprite.h"
+
+#include <stdio.h>
+#include <algorithm>
+
+
+using namespace std;
+
 class Board
 {
 public:

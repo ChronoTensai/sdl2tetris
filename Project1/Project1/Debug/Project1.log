@@ -1,5 +1,4 @@
-﻿  Tetrimino.cpp
-  LBlock.cpp
-  Generating Code...
+﻿  Board.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.exe
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.pdb (Partial PDB)

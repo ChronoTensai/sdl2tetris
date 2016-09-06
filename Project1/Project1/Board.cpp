@@ -33,30 +33,39 @@ Board::Board()
 		}
 		swichtColor = !swichtColor;
 	}
+
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			spriteMatriz[i][j]->Tint(0, 100, 0);
+			spriteMatriz[i][j]->Add();
+			
+		}
+	}
 }
 
 void Board::AddAtTopBoard(int* matriz,int w, int h)
 {
 	//RandomColors
+	int matrizItem[4][4];
 
-	for (int i = 0; i < h; i++)
+	for ( int i = 0; i < h; i++)
 	{
-		printf("{ ");
+		
 		for (int j = 0; j < w; j++)
 		{
-			printf("%d ,", matriz[i]);
+			matrizItem[i][j] = *(matriz + j + (w*i));
 		}
-		printf(" } \n");
-
 	}
-	
+
 	//PickCenterTileToAddItem
-	/*int centerId = floor((WidthBoard - w -1)/ 2);
+	int centerId = floor((WidthBoard - w -1)/ 2);
 	for (int i = 0; i < h; i++)
 	{
 		for (int j = centerId; j < centerId + w ; j++)
 		{
-			logicMatriz[i][j] =  1;
+			logicMatriz[i][j] = matrizItem[i][j - centerId];
 			spriteMatriz[i][j]->Tint(0,50,0);
 		}
 	}
@@ -70,7 +79,7 @@ void Board::AddAtTopBoard(int* matriz,int w, int h)
 		}
 		printf(" } \n");
 		
-	}*/
+	}
 	
 }
 

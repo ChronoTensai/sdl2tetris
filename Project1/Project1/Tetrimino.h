@@ -17,7 +17,11 @@ class Tetrimino
 		void BackToPool();
 		int* GetLogicMatriz();
 		Tetrimino();
-		~Tetrimino();	
+		~Tetrimino();
+	protected:
+		int logicMatriz[4][4];
+		const int sizeMatriz = 4;
+
 };
 
 

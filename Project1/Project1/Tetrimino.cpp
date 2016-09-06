@@ -1,6 +1,5 @@
 #include "Tetrimino.h"
 
-int logicMatriz[4][4];
 const int sizeMatriz = 4;
 
 
@@ -21,7 +20,7 @@ void Tetrimino::RotateLeft()
 		}
 	}
 
-	std::memcpy(logicMatriz, auxMatriz, sizeof(logicMatriz) * sizeMatriz);
+	std::memcpy(logicMatriz, auxMatriz, sizeof(logicMatriz) * sizeMatriz * sizeMatriz); //Funciona?
 }
 
 void Tetrimino::RotateRight()
@@ -29,7 +28,7 @@ void Tetrimino::RotateRight()
 	int auxIndexer = sizeMatriz -1;
 	int auxMatriz[4][4];
 
-	std::memcpy(auxMatriz, logicMatriz, sizeof(logicMatriz) * sizeMatriz);
+	std::memcpy(auxMatriz, logicMatriz, sizeof(logicMatriz) * sizeMatriz * sizeMatriz);
 
 	for (int i = 0; i < sizeMatriz; i++)
 	{
@@ -51,15 +50,12 @@ void Tetrimino::BackToPool()
 
 int* Tetrimino::GetLogicMatriz()
 {
-	int* matriz = logicMatriz[0];
+	int* matriz = *logicMatriz;
 	return matriz;
 }
 
 Tetrimino::Tetrimino()
-{
-	
-
-}
+{}
 
 
 Tetrimino::~Tetrimino()
