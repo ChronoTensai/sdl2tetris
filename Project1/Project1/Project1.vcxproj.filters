@@ -161,26 +161,5 @@
     <ClInclude Include="Tetrimino.h">
       <Filter>Header Files\Screens\Game\Tetriminios</Filter>
     </ClInclude>
-    <ClInclude Include="IBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
-    <ClInclude Include="JBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
-    <ClInclude Include="LBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
-    <ClInclude Include="OBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
-    <ClInclude Include="SBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
-    <ClInclude Include="TBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
-    <ClInclude Include="ZBlock.h">
-      <Filter>Header Files\Screens\Game\Tetriminios</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

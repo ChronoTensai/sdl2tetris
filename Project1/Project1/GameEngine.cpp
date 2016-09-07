@@ -5,6 +5,16 @@ SDL_Renderer* renderer = NULL;
 CustomInputManager* inputManager;
 SDL_Event Event;
 
+//FPS Control
+const int SREEN_FPS = 24;
+const int SCREEN_TICKS_PER_FRAME = 1000 / SREEN_FPS;
+
+unsigned int startTicks;
+unsigned int deltaTime;
+
+
+
+
 bool GameEngine::InitVideo()
 {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -59,8 +69,9 @@ bool GameEngine::Start()
 
 void GameEngine::BeforeUpdate(bool* running)
 {
-	//SDL_RenderClear(renderer);
-
+	startTicks = SDL_GetTicks();
+	SDL_RenderClear(renderer);
+	
 	while (SDL_PollEvent(&Event) != 0)
 	{
 		if (Event.type == SDL_QUIT)
@@ -77,7 +88,13 @@ void GameEngine::BeforeUpdate(bool* running)
 
 void GameEngine::AfterUpdate()
 {
+	SDL_RenderPresent(renderer);
 
+	int endTick = SDL_GetTicks() - startTicks;
+	if (endTick < SCREEN_TICKS_PER_FRAME)
+	{
+		SDL_Delay(SCREEN_TICKS_PER_FRAME - endTick);		
+	}
 }
 
 GameEngine::~GameEngine()

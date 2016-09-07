@@ -140,11 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
-    <ClInclude Include="IBlock.h" />
     <ClInclude Include="InputDefintion.h" />
-    <ClInclude Include="JBlock.h" />
-    <ClInclude Include="LBlock.h" />
-    <ClInclude Include="OBlock.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="EngineTools.h" />
     <ClInclude Include="GameEngine.h" />
@@ -154,11 +150,8 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="MainMenu.h" />
-    <ClInclude Include="SBlock.h" />
     <ClInclude Include="Sprite.h" />
-    <ClInclude Include="TBlock.h" />
     <ClInclude Include="Tetrimino.h" />
-    <ClInclude Include="ZBlock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

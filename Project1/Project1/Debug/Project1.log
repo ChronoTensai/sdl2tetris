@@ -1,4 +1,28 @@
-﻿  Board.cpp
-d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(63): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-  Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.exe
-  Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.pdb (Partial PDB)
+﻿  Game.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\game.cpp(8): error C2512: 'Board::Board': no appropriate default constructor available
+  Board.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(21): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(22): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(22): error C2227: left of '->PositionX' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(23): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(23): error C2227: left of '->PositionY' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(26): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(26): error C2227: left of '->Tint' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(30): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(30): error C2227: left of '->Tint' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(32): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(32): error C2227: left of '->Add' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(46): error C2109: subscript requires array or pointer type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(48): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(48): error C2227: left of '->Tint' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(50): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(50): error C2227: left of '->Add' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(71): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(78): error C2109: subscript requires array or pointer type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(79): error C2676: binary '[': 'Sprite' does not define this operator or a conversion to a type acceptable to the predefined operator
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(79): error C2227: left of '->Add' must point to class/struct/union/generic type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(89): error C2109: subscript requires array or pointer type
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(89): warning C4473: 'printf' : not enough arguments passed for format string
+  d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(89): note: placeholders and their parameters expect 1 variadic arguments, but 0 were provided
+  d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(89): note: the missing variadic argument 1 is required by format string '%d'
+  Generating Code...

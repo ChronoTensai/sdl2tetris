@@ -10,6 +10,8 @@ Sprite::Sprite(std::string path, int posX, int posY, int width, int height)
 	sourceTexture = EngineTools::RenderService().LoadTexture(path);
 }
 
+
+
 void Sprite::PositionX(int value)
 {
 	Rect.x = value;
@@ -45,6 +47,18 @@ void Sprite::Add()
 {
 	drawed = true;
 	EngineTools::RenderService().RenderTexture(Rect, sourceTexture);
+}
+
+Sprite* Sprite::Clone()
+{
+	return  new Sprite(sourceTexture, Rect);
+}
+
+Sprite::Sprite(SDL_Texture* srcTexture, SDL_Rect rect)
+{
+	drawed = false;
+	Rect = rect;
+	sourceTexture = srcTexture;
 }
 
 void Sprite::Tint(float r, float g, float b)

@@ -10,9 +10,15 @@ using namespace std;
 class Board
 {
 public:
-	Board();
+	Board(const int * height,const int * width, int x, int y, int tilesSize);
+	void Redraw();
 	void AddAtTopBoard(int * matriz, int w, int h);
 	~Board();
-		
+private:
+	int _height;
+	int _width;
+	int*   logicMatriz;
+	Sprite* spriteMatriz;
+	
 };
 

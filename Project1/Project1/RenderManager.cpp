@@ -30,13 +30,11 @@ SDL_Texture* RenderManager::LoadTexture(std::string path)
 void RenderManager::RenderTexture(SDL_Rect rectTexture, SDL_Texture * source)
 {
 	SDL_RenderCopy(gRenderer, source, NULL, &rectTexture);
-	SDL_RenderPresent(gRenderer);
 }
 
 void RenderManager::TintTexture(SDL_Texture * source, float r, float g, float b)
 {
 	SDL_SetTextureColorMod(source, r, g, b);
-	SDL_RenderPresent(gRenderer);
 }
 
 RenderManager::~RenderManager() 

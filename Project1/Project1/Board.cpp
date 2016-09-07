@@ -1,25 +1,26 @@
 #include "Board.h"
 
-const int  HeightBoard = 20;
-const int  WidthBoard = 10;
-const int  startXPosition = 10;
-const int  startYPosition = 30;
-const int  tilesSize = 35;
 const string  boardTilePath = "Assets/Gameplay/boardtile.png";
-const string  itemsTilePath = "Assets/Gameplay/boardtile.png";
 
-int    logicMatriz[HeightBoard][WidthBoard];
-Sprite* spriteMatriz[HeightBoard][WidthBoard];
 
-Board::Board()
+Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 {
 	bool swichtColor = false;
+	_height = *height;
+	_width = *width;
 
-	for (int i = 0; i < HeightBoard; i++)
+	//logicMatriz = int [*height][*width];;
+	//spriteMatriz = Sprite* [*height][*width];
+
+	Sprite sprite = Sprite(boardTilePath, 0, 0, tilesSize, tilesSize);
+
+	for (int i = 0; i < _height; i++)
 	{
-		for (int j = 0; j < WidthBoard; j++)
+		for (int j = 0; j < _width; j++)
 		{
-			spriteMatriz[i][j] = new Sprite(boardTilePath, startXPosition + (tilesSize*j), startYPosition + (tilesSize*i), tilesSize, tilesSize);
+			spriteMatriz[i][j] = sprite.Clone();
+			spriteMatriz[i][j]->PositionX(x + (tilesSize*j));
+			spriteMatriz[i][j]->PositionY(y + (tilesSize*i));
 			if (swichtColor)
 			{
 				spriteMatriz[i][j]->Tint(0, 0, 100);
@@ -29,21 +30,29 @@ Board::Board()
 				spriteMatriz[i][j]->Tint(100,0,0);
 			}
 			spriteMatriz[i][j]->Add();
-			swichtColor = !swichtColor;			
+			swichtColor = !swichtColor;
 		}
 		swichtColor = !swichtColor;
-	}
+	}	
+}
 
-	for (int i = 0; i < 5; i++)
+
+void Board::Redraw()
+{
+	for (int i = 0; i < _height; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < _width; j++)
 		{
-			spriteMatriz[i][j]->Tint(0, 100, 0);
-			spriteMatriz[i][j]->Add();
-			
+			if (logicMatriz[i][j] == 1)
+			{
+				spriteMatriz[i][j]->Tint(0, 100, 0);
+			}
+			spriteMatriz[i][j]->Add();					
 		}
 	}
 }
+
+/* No se usa se guarda por la logica */
 
 void Board::AddAtTopBoard(int* matriz,int w, int h)
 {
@@ -52,7 +61,6 @@ void Board::AddAtTopBoard(int* matriz,int w, int h)
 
 	for ( int i = 0; i < h; i++)
 	{
-		
 		for (int j = 0; j < w; j++)
 		{
 			matrizItem[i][j] = *(matriz + j + (w*i));
@@ -60,20 +68,23 @@ void Board::AddAtTopBoard(int* matriz,int w, int h)
 	}
 
 	//PickCenterTileToAddItem
-	int centerId = floor((WidthBoard - w -1)/ 2);
+	int centerId = floor((_width - w -1)/ 2);
 	for (int i = 0; i < h; i++)
 	{
 		for (int j = centerId; j < centerId + w ; j++)
 		{
-			logicMatriz[i][j] = matrizItem[i][j - centerId];
-			spriteMatriz[i][j]->Tint(0,50,0);
+			if (matrizItem[i][j - centerId] == 1)
+			{
+				logicMatriz[i][j] = matrizItem[i][j - centerId];
+				spriteMatriz[i][j]->Add();
+			}
 		}
 	}
 
-	for (int i = 0; i < HeightBoard; i++)
+	for (int i = 0; i < _height; i++)
 	{
 		printf("{ ");
-		for (int j = 0; j < WidthBoard; j++)
+		for (int j = 0; j < _width; j++)
 		{
 			printf("%d ,", logicMatriz[i][j]);
 		}

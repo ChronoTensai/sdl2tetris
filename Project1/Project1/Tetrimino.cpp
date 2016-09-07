@@ -3,7 +3,6 @@
 const int sizeMatriz = 4;
 
 
-
 void Tetrimino::RotateLeft()
 {
 	int auxIndexer = sizeMatriz -1;
@@ -48,6 +47,11 @@ void Tetrimino::BackToPool()
 
 }
 
+void Tetrimino::Redraw()
+{
+
+}
+
 int* Tetrimino::GetLogicMatriz()
 {
 	int* matriz = *logicMatriz;
@@ -56,7 +60,6 @@ int* Tetrimino::GetLogicMatriz()
 
 Tetrimino::Tetrimino()
 {}
-
 
 Tetrimino::~Tetrimino()
 {

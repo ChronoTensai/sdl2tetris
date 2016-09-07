@@ -4,6 +4,7 @@
 
 #include <SDL.h>
 #include <stdio.h>
+#include <SDL_timer.h>
 #include "EngineTools.h"
 #include "CustomInputManager.h"
 #include "RenderManager.h"
