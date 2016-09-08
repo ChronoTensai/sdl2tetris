@@ -8,6 +8,7 @@
 class Sprite
 {
 	public:
+		Sprite();
 		Sprite(std::string path, int x, int y, int w, int h);
 		void Add();
 		Sprite* Clone();

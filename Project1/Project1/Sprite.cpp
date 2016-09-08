@@ -1,5 +1,9 @@
 #include "Sprite.h"
 
+Sprite::Sprite()
+{
+}
+
 Sprite::Sprite(std::string path, int posX, int posY, int width, int height)
 {
 	drawed = false;
@@ -46,6 +50,7 @@ void Sprite::Height(int value)
 void Sprite::Add()
 {
 	drawed = true;
+	//Check update texture
 	EngineTools::RenderService().RenderTexture(Rect, sourceTexture);
 }
 
@@ -65,9 +70,6 @@ void Sprite::Tint(float r, float g, float b)
 {
 	EngineTools::RenderService().TintTexture(sourceTexture,r,g,b);
 }
-
-
-
 
 Sprite::~Sprite()
 {
