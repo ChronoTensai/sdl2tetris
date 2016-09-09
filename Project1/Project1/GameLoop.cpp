@@ -1,10 +1,5 @@
 #include "GameLoop.h"
 
-
-GameEngine* gameEngine;
-GameManager* gameManager;
-bool IsRunning;
-
 GameLoop::GameLoop()
 {
 	gameEngine = new GameEngine();
@@ -38,11 +33,12 @@ void GameLoop::Looping()
 
 void  GameLoop::EndLoop()
 {
-	gameEngine = nullptr;
 	delete gameEngine;
+	gameEngine = nullptr;
 
-	gameManager = nullptr;
 	delete gameManager;
+	gameManager = nullptr;
+
 }
 
 GameLoop::~GameLoop()

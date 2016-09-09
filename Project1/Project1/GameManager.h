@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Game.h"
+
 class GameManager
 {
 public:
@@ -8,5 +10,7 @@ public:
 	~GameManager();
 private:
 	bool init;
+	Game* _game;
+
 };
 

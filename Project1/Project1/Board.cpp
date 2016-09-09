@@ -1,7 +1,6 @@
 #include "Board.h"
 #include <stdlib.h>
 
-const string  boardTilePath = "Assets/Gameplay/boardtile.png";
 
 
 Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
@@ -109,6 +108,6 @@ void Board::AddAtTopBoard(int* matriz,int w, int h)
 Board::~Board()
 {
 	//dont forget erase memory
-	free(spriteMatriz);
+	delete[] spriteMatriz;
 	delete [] logicMatriz;
 }

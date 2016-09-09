@@ -2,7 +2,6 @@
 #ifndef CustomInputManager_H
 #endif CustomInputManager_H
 
-
 #include <SDL_system.h>
 #include <SDL.h>
 #include <map>
@@ -19,7 +18,7 @@ class CustomInputManager
 		CustomInputManager();
 		~CustomInputManager();
 		void CheckInputs(SDL_Event e);
-		void RegisterInput(InputKeys InputKey, void(*callback)());
+		void RegisterInput(InputKeys InputKey, inputCallback callback);
 		void ClearInputs();
 	private:
 		map<InputKeys, inputCallback> InputMapping;

@@ -29,6 +29,11 @@ class GameEngine
 		SDL_Renderer* renderer;
 		CustomInputManager* inputManager;
 		SDL_Event Event;
+		//FPS Control
+		const int SREEN_FPS = 24;
+		const int SCREEN_TICKS_PER_FRAME = 1000 / SREEN_FPS;
+		unsigned int startTicks;
+		unsigned int deltaTime;
 };
 
 

@@ -20,11 +20,11 @@ void EngineTools::FinalizeEngineTools()
 {
 	EngineTools::_engineToolsInitialized = false;
 
-	_inputManager = nullptr;
-	delete _inputManager;
-
-	_renderService = nullptr;
-	delete _renderService;
+	delete EngineTools::_inputManager;
+	EngineTools::_inputManager = nullptr;
+	
+	delete EngineTools::_renderService;
+	EngineTools::_renderService = nullptr;
 }
 
 CustomInputManager& EngineTools::InputService()

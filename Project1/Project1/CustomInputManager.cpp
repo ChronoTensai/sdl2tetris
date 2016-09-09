@@ -13,7 +13,7 @@ CustomInputManager::CustomInputManager()
 	InputRegisters[SDLK_ESCAPE] = InputKeys::ESCAPE;	
 }
 
-void CustomInputManager::RegisterInput(InputKeys InputKey, void(*callback)())
+void CustomInputManager::RegisterInput(InputKeys InputKey, inputCallback callback)
 {
 	InputMapping[InputKey] = callback;
 }
@@ -29,6 +29,8 @@ void CustomInputManager::CheckInputs(SDL_Event e)
 	if (callBack != NULL) callBack();
 	else printf("Input Not Registed \n"); 
 }
+
+
 
 CustomInputManager::~CustomInputManager()
 {

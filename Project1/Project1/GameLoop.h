@@ -17,5 +17,8 @@ public:
 private:
 	void Looping();
 	void EndLoop();
+	GameEngine* gameEngine;
+	GameManager* gameManager;
+	bool IsRunning;
 };
 

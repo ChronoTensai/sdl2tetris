@@ -39,7 +39,9 @@ void RenderManager::TintTexture(SDL_Texture * source, float r, float g, float b)
 
 RenderManager::~RenderManager() 
 {
-	
+	//I free the memory of this elements in GameEngine
+	gRenderer = nullptr;
+	gWindow = nullptr;
 
 }
 

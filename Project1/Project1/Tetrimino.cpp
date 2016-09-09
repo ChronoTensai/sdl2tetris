@@ -1,8 +1,5 @@
 #include "Tetrimino.h"
 
-const int sizeMatriz = 4;
-
-
 void Tetrimino::RotateLeft()
 {
 	int auxIndexer = sizeMatriz -1;
@@ -63,4 +60,8 @@ Tetrimino::Tetrimino()
 
 Tetrimino::~Tetrimino()
 {
+	delete[] spriteMatriz;
+	free(logicMatriz);
 }
+
+

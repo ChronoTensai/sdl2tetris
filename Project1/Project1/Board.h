@@ -1,6 +1,5 @@
 #pragma once
 #include "Sprite.h"
-
 #include <stdio.h>
 #include <algorithm>
 
@@ -15,10 +14,10 @@ public:
 	void AddAtTopBoard(int * matriz, int w, int h);
 	~Board();
 private:
+	const string  boardTilePath = "Assets/Gameplay/boardtile.png";
 	int _height;
 	int _width;
 	int*   logicMatriz;
-	Sprite* spriteMatriz;
-	
+	Sprite* spriteMatriz;	
 };
 

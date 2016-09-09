@@ -1,7 +1,5 @@
 #include "GameManager.h"
-#include "Game.h"
 
-Game* _game;
 
 GameManager::GameManager()
 {
@@ -15,6 +13,6 @@ void GameManager::Update()
 
 GameManager::~GameManager()
 {
-	_game = nullptr;
 	delete _game;
+	_game = nullptr;
 }

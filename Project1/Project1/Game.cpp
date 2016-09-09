@@ -1,13 +1,9 @@
 #include "Game.h"
 
-
-
-
 Game::Game()
 {
 	gameBoard = new Board(&HEIGHT_BOARD, &WIDTH_BOARD, BOARD_X, BOARD_Y, TILE_SIZE);
 	hasTetrominioActive = false;
-
 
 	//EngineTools::InputService().RegisterInput(InputDefinition::InputKeys::UP, RotateTetrominio);
 	//EngineTools::InputService().RegisterInput(InputDefinition::InputKeys::LEFT, MoveLeftTetrominio);
@@ -15,8 +11,6 @@ Game::Game()
 	//EngineTools::InputService().RegisterInput(InputDefinition::InputKeys::DOWN, DownTetrominio);
 
 }
-
-
 
 void Game::CreateAssetPool()
 {
@@ -52,7 +46,7 @@ void Game::DownTetrominio()
 
 void Game::PickTetrominio()
 {
-	//Random
+	//Pick Random Tetriminio
 	activeTetrominio = tetrominioMap[0];
 	hasTetrominioActive = true;
 }
@@ -83,4 +77,14 @@ void Game::Update()
 
 Game::~Game()
 {
+	delete gameBoard;
+	gameBoard = nullptr;
+
+	delete activeTetrominio;
+
+	for (std::map<int, Tetrimino*>::iterator it = tetrominioMap.begin(); it != tetrominioMap.end(); ++it)
+	{
+		delete (it->second);
+	}
+	tetrominioMap.clear();
 }

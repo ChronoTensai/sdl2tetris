@@ -62,7 +62,7 @@ Sprite* Sprite::Clone()
 Sprite::Sprite(SDL_Texture* srcTexture, SDL_Rect rect)
 {
 	drawed = false;
-	Rect = rect;
+	Rect = rect;	
 	sourceTexture = srcTexture;
 }
 
@@ -73,9 +73,6 @@ void Sprite::Tint(float r, float g, float b)
 
 Sprite::~Sprite()
 {
-	drawed = false;
-
-	sourceTexture = nullptr;
 	delete sourceTexture;
-
+	sourceTexture = nullptr;
 }

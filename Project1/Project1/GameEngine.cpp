@@ -1,19 +1,5 @@
 #include "GameEngine.h"
 
-SDL_Window* window = NULL;
-SDL_Renderer* renderer = NULL;
-CustomInputManager* inputManager;
-SDL_Event Event;
-
-//FPS Control
-const int SREEN_FPS = 24;
-const int SCREEN_TICKS_PER_FRAME = 1000 / SREEN_FPS;
-
-unsigned int startTicks;
-unsigned int deltaTime;
-
-
-
 
 bool GameEngine::InitVideo()
 {
@@ -105,6 +91,15 @@ GameEngine::~GameEngine()
 	SDL_DestroyWindow(window);
 	//Quit SDL subsystems
 	SDL_Quit();
+
+	delete window;
+	delete renderer;
+	delete inputManager;
+
+	window = nullptr;
+	renderer = nullptr;
+	inputManager = nullptr;
+	
 }
 
 

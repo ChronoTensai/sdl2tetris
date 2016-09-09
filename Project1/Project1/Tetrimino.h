@@ -19,12 +19,11 @@ class Tetrimino
 		void Redraw();
 		int* GetLogicMatriz();
 		Tetrimino();
-		~Tetrimino();
+		virtual ~Tetrimino();
 	protected:
 		int logicMatriz[4][4];
 		Sprite* spriteMatriz[4];
 		const int sizeMatriz = 4;
-
 };
 
 

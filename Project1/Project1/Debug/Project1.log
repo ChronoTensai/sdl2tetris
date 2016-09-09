@@ -1,8 +1,17 @@
-﻿  Sprite.cpp
-d:\documents\proyectos\tetris\sdl2tetris\project1\project1\sprite.cpp(79): warning C4150: deletion of pointer to incomplete type 'SDL_Texture'; no destructor called
-  d:\sdl2\sdl2-2.0.4\include\sdl_render.h(128): note: see declaration of 'SDL_Texture'
-  Board.cpp
-d:\documents\proyectos\tetris\sdl2tetris\project1\project1\board.cpp(82): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+﻿  Tetrimino.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\tetrimino.cpp(63): warning C4154: deletion of an array expression; conversion to pointer supplied
   Generating Code...
+  Skipping... (no relevant changes detected)
+  ZBlock.cpp
+  TBlock.cpp
+  SBlock.cpp
+  OBlock.cpp
+  Main.cpp
+  LBlock.cpp
+  JBlock.cpp
+  IBlock.cpp
+  GameManager.cpp
+  GameLoop.cpp
+  Game.cpp
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.exe
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.pdb (Partial PDB)
