@@ -2,6 +2,8 @@
 
 namespace InputDefinition
 {
+	typedef void(*inputCallback)();
+
 	enum  InputKeys
 	{
 		ANY,

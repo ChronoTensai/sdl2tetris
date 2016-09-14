@@ -5,12 +5,20 @@
 #include <SDL.h>
 #include "EngineTools.h"
 
+struct Color
+{
+	int R;
+	int G;
+	int B;
+};
+
 class Sprite
 {
 	public:
 		Sprite();
 		Sprite(std::string path, int x, int y, int w, int h);
 		void Add();
+		void Clear();
 		Sprite* Clone();
 		void Tint(float r, float g, float b);
 		void PositionX(int value);

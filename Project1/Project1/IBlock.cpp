@@ -1,17 +1,23 @@
 #include "Tetrimino.h"
 
-
-
-IBlock::IBlock()
+IBlock::IBlock(const int* tileSize) : Tetrimino(tileSize)
 {
-	int logicMatriz[4][4] =
+	int auxMatriz[4][4] =
 	{
 		{ 0,0,0,0 },
-		{ 0,0,0,0 },
 		{ 1,1,1,1 },
+		{ 0,0,0,0 },
 		{ 0,0,0,0 }
 	
 	};
+
+	std::memcpy(logicMatriz, auxMatriz, sizeof(logicMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);
+
+	tintColor.R = 0;
+	tintColor.G = DEFAULT_COLOR;
+	tintColor.B = DEFAULT_COLOR;
+
+	Draw();
 }
 
 

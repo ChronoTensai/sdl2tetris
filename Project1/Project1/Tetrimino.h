@@ -6,38 +6,46 @@
 #include "Sprite.h"
 #include <algorithm>
 
-
 using namespace std;
-
 
 class Tetrimino
 {
 	public:
 		void RotateLeft();
 		void RotateRight();
-		void BackToPool();
+		int X = 0;
+		int Y = 0;
 		void Redraw();
+		void GoToBoard(int boardX, int boardY);
 		int* GetLogicMatriz();
+		Tetrimino(const int* tileSize);
 		Tetrimino();
 		virtual ~Tetrimino();
 	protected:
-		int logicMatriz[4][4];
-		Sprite* spriteMatriz[4];
-		const int sizeMatriz = 4;
+		const string TILE_PATH = "Assets/Gameplay/trinomiotile.jpg";
+		const int TILES_PER_ITEM = 4;
+		const int DEFAULT_COLOR = 255;
+		const int* _tileSize;
+		Color tintColor;
+		int* logicMatriz;
+		Sprite* spriteMatriz;
+		void Draw();
+	public:
+		const int SIZE_MATRIZ = 4;
 };
 
 
 class IBlock : public Tetrimino
 {
 public:
-	IBlock();
+	IBlock(const int* tileSize);
 	~IBlock();
 };
 
 class LBlock : public Tetrimino
 {
 public:
-	LBlock();
+	LBlock(const int* tileSize);
 	~LBlock();
 };
 
@@ -46,21 +54,21 @@ class JBlock : public Tetrimino
 {
 
 public:
-	JBlock();
+	JBlock(const int* tileSize);
 	~JBlock();
 };
 
 class ZBlock : public Tetrimino
 {
 public:
-	ZBlock();
+	ZBlock(const int* tileSize);
 	~ZBlock();
 };
 
 class TBlock : public Tetrimino
 {
 public:
-	TBlock();
+	TBlock(const int* tileSize);
 	~TBlock();
 };
 
@@ -68,7 +76,7 @@ class SBlock : public Tetrimino
 {
 
 public:
-	SBlock();
+	SBlock(const int* tileSize);
 	~SBlock();
 };
 
@@ -76,7 +84,7 @@ class OBlock : public Tetrimino
 {
 
 public:
-	OBlock();
+	OBlock(const int* tileSize);
 	~OBlock();
 };
 

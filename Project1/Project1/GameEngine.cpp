@@ -81,6 +81,7 @@ void GameEngine::AfterUpdate()
 	{
 		SDL_Delay(SCREEN_TICKS_PER_FRAME - endTick);		
 	}
+	SDL_Delay(300);
 }
 
 GameEngine::~GameEngine()
@@ -92,12 +93,7 @@ GameEngine::~GameEngine()
 	//Quit SDL subsystems
 	SDL_Quit();
 
-	delete window;
-	delete renderer;
 	delete inputManager;
-
-	window = nullptr;
-	renderer = nullptr;
 	inputManager = nullptr;
 	
 }

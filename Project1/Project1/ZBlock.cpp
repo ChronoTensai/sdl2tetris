@@ -1,16 +1,22 @@
 #include "Tetrimino.h"
 
-ZBlock::ZBlock()
+ZBlock::ZBlock(const int* tileSize) : Tetrimino(tileSize)
 {
-	int logicMatriz[4][4] =
-	{
-		{ 0,0,0,0 },
-		{ 1,1,0,0 },
-		{ 0,1,1,0 },
-		{ 0,0,0,0 }
-	};
-}
+	int auxMatriz [4][4] =
 
+	{ 0,0,0,0,
+	 1,1,0,0,
+	 0,1,1,0,
+	 0,0,0,0 };
+	
+	std::memcpy(logicMatriz, auxMatriz, sizeof(logicMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);
+	
+	tintColor.R = DEFAULT_COLOR;
+	tintColor.G = 0;
+	tintColor.B = 0;
+
+	Draw();
+}
 
 ZBlock::~ZBlock()
 {

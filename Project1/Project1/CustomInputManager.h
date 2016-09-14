@@ -8,9 +8,8 @@
 #include "InputDefintion.h"
 
 using namespace std;
+using InputDefinition::inputCallback;
 using InputDefinition::InputKeys;
-
-typedef void(*inputCallback)();
 
 class CustomInputManager
 {

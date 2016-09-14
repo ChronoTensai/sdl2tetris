@@ -54,6 +54,11 @@ void Sprite::Add()
 	EngineTools::RenderService().RenderTexture(Rect, sourceTexture);
 }
 
+void Sprite::Clear()
+{
+	drawed = false;	
+}
+
 Sprite* Sprite::Clone()
 {
 	return  new Sprite(sourceTexture, Rect);
@@ -73,6 +78,5 @@ void Sprite::Tint(float r, float g, float b)
 
 Sprite::~Sprite()
 {
-	delete sourceTexture;
-	sourceTexture = nullptr;
+	SDL_DestroyTexture(sourceTexture);
 }

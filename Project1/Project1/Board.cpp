@@ -1,6 +1,4 @@
 #include "Board.h"
-#include <stdlib.h>
-
 
 
 Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
@@ -12,38 +10,19 @@ Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 	logicMatriz = new int[(_height * _width)];
 	spriteMatriz = new Sprite[(_height * _width)];
 
-	//Sprite* _sprite = new Sprite(boardTilePath, 0, 0, tilesSize, tilesSize);
-
 	for (int i = 0; i < _height; i++)
 	{
 		for (int j = 0; j < _width; j++)
 		{
-			/*Sprite auxSprite = *_sprite->Clone();
-			spriteMatriz[j + (_width*i)] = auxSprite;
-			spriteMatriz[j + (_width*i)].PositionX(x + (tilesSize*j));
-			spriteMatriz[j + (_width*i)].PositionY(y + (tilesSize*i));*/
-
+			logicMatriz[j + (_width*i)] = 0;
 			spriteMatriz[j + (_width*i)] =  *(new Sprite(boardTilePath, x + (tilesSize*j), y + (tilesSize*i), tilesSize, tilesSize));
-
-			if (swichtColor)
-			{
-				spriteMatriz[j + (_width*i)].Tint(0, 0, 100);
-				printf("Si \n");				
-			}
-			else
-			{
-				spriteMatriz[j + (_width*i)].Tint(100,0,0);
-				printf("No \n");
-			}
+			spriteMatriz[j + (_width*i)].Tint(0, 0, 51);			
 			spriteMatriz[j + (_width*i)].Add();
 
 			swichtColor = !swichtColor;
 		}
 		swichtColor = !swichtColor;
 	}
-
-	
-
 }
 
 
@@ -53,18 +32,48 @@ void Board::Redraw()
 	{
 		for (int j = 0; j < _width; j++)
 		{
-			if (logicMatriz[j + (_width*i)] == 1)
+			if (logicMatriz[j + (_width*i)] == 0)
 			{
-				spriteMatriz[j + (_width*i)].Tint(0, 100, 0);
+				spriteMatriz[j + (_width*i)].Tint(0, 0, 51);				
+			}
+			else
+			{
+				spriteMatriz[j + (_width*i)].Tint(224, 224, 224);
 			}
 			spriteMatriz[j + (_width*i)].Add();
 		}
 	}
 }
 
+int* Board::GetLogicMatriz ()
+{
+	return logicMatriz;
+}
+
+void Board::UpdateLogicMatriz(int* newMatriz, int matrizSize, int logicX, int logicY)
+{
+	int currentBoardIndex;
+	int currentUpdateMatrixBoard;
+
+	for (int i = logicY; i < matrizSize + logicY; i++)
+	{
+		for (int j = logicX; j < matrizSize + logicX; j++)
+		{
+			currentBoardIndex = _width * i + j;
+			currentUpdateMatrixBoard = matrizSize * (i - logicY) + (j - logicX);
+			
+			if (newMatriz[currentUpdateMatrixBoard] == 1)
+			{
+				logicMatriz[currentBoardIndex] = 1;
+			}
+
+		}
+	}
+}
+
 /* No se usa se guarda por la logica */
 
-void Board::AddAtTopBoard(int* matriz,int w, int h)
+/*void Board::AddAtTopBoard(int* matriz,int w, int h)
 {
 	//RandomColors
 	int matrizItem[4][4];
@@ -102,7 +111,7 @@ void Board::AddAtTopBoard(int* matriz,int w, int h)
 		
 	}
 	
-}
+}*/
 
 
 Board::~Board()

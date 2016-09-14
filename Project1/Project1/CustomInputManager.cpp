@@ -25,9 +25,15 @@ void CustomInputManager::ClearInputs()
 
 void CustomInputManager::CheckInputs(SDL_Event e)
 {
-	inputCallback callBack = InputMapping[InputRegisters[e.key.keysym.sym]]; //Handle Null case
-	if (callBack != NULL) callBack();
-	else printf("Input Not Registed \n"); 
+	InputKeys inputNumber = InputRegisters[e.key.keysym.sym];
+	if (inputNumber != NULL)
+	{	
+		inputCallback callBack = InputMapping[inputNumber]; //Handle Null case
+		if (callBack != NULL) callBack();
+		else printf("Callback not Registerd \n");
+	}
+	else
+		printf("Input not Registerd \n");
 }
 
 
