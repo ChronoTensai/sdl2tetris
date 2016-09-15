@@ -4,6 +4,7 @@
 GameManager::GameManager()
 {
 	_game = new Game();
+	//_mainMenu = new MainMenu();
 }
 
 void GameManager::Update()
@@ -15,4 +16,7 @@ GameManager::~GameManager()
 {
 	delete _game;
 	_game = nullptr;
+
+	//delete _mainMenu;
+	//_mainMenu = nullptr;
 }

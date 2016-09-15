@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include "MainMenu.h"
 
 class GameManager
 {
@@ -11,6 +12,7 @@ public:
 private:
 	bool init;
 	Game* _game;
+	MainMenu* _mainMenu;
 
 };
 

@@ -6,10 +6,17 @@ Game::Game()
 	CreateAssetPool();
 	hasTetrominioActive = false;
 
-	EngineTools::InputService().RegisterInput(InputKeys::UP, RotateTetrominio);
+	//clbk = InputHandlers::my_callback;
+	
+
+	/*inputCallback callbackTow = &InputHandlers::my_callback;
+	EngineTools::InputService().RegisterInputTwo(callbackTow, x);*/
+
+	//EngineTools::InputService().RegisterInputTwo(callbackTow(clbk, a));
+	/*EngineTools::InputService().RegisterInput(InputKeys::UP, RotateTetrominio);
 	EngineTools::InputService().RegisterInput(InputKeys::LEFT, MoveLeftTetrominio);
 	EngineTools::InputService().RegisterInput(InputKeys::RIGHT, MoveRightTetrominio);
-	EngineTools::InputService().RegisterInput(InputKeys::DOWN, DownTetrominio);
+	EngineTools::InputService().RegisterInput(InputKeys::DOWN, DownTetrominio);*/
 
 }
 
@@ -35,6 +42,7 @@ void Game::RotateTetrominio()
 	//activeTetrominio->RotateLeft();
 
 }
+
 
 void Game::MoveLeftTetrominio()
 {

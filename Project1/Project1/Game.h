@@ -8,11 +8,13 @@
 #include <ctime>
 #include <map>
 
-class Game
+class Game 
 {
 public:
 	Game();
 	void Update();
+	void RotateTetrominio();
+
 	~Game();
 private:
 	const int  HEIGHT_BOARD = 20;
@@ -27,8 +29,6 @@ private:
 	bool CheckCollision(int & logicX, int & logicY);
 	bool EndOfGame = false;
 
-
-	static void RotateTetrominio();
 	static void MoveLeftTetrominio();
 	static void MoveRightTetrominio();
 	static void DownTetrominio();

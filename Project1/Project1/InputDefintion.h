@@ -1,8 +1,10 @@
 #pragma once
 
+#ifndef InputDefinition
+#endif InputDefinition
+
 namespace InputDefinition
 {
-	typedef void(*inputCallback)();
 
 	enum  InputKeys
 	{

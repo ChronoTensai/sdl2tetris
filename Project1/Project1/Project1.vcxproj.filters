@@ -161,5 +161,8 @@
     <ClInclude Include="Tetrimino.h">
       <Filter>Header Files\Screens\Game\Tetriminios</Filter>
     </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files\Engine\InputManager</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

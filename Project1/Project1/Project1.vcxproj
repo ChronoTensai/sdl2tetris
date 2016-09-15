@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="InputDefintion.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="EngineTools.h" />
     <ClInclude Include="GameEngine.h" />
