@@ -43,7 +43,7 @@ bool GameEngine::Start()
 {
 	if (CreateWindowRendered())
 	{
-		inputManager = new CustomInputManager();
+		inputManager = new InputManager();
 		EngineTools::InitializeEngineTools(inputManager, window, renderer);
 		return true;
 	}

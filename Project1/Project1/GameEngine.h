@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <SDL_timer.h>
 #include "EngineTools.h"
-#include "CustomInputManager.h"
+#include "InputManager.h"
 #include "RenderManager.h"
 #include "ScreenManager.h"
 
@@ -27,7 +27,7 @@ class GameEngine
 		const int SCREEN_HEIGTH = 600;
 		SDL_Window* window;
 		SDL_Renderer* renderer;
-		CustomInputManager* inputManager;
+		InputManager* inputManager;
 		SDL_Event Event;
 		//FPS Control
 		const int SREEN_FPS = 24;

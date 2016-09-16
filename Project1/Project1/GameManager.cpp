@@ -4,7 +4,8 @@
 GameManager::GameManager()
 {
 	_game = new Game();
-	//_mainMenu = new MainMenu();
+	_inputHandler = InputHandler(_game);
+	EngineTools::InputService().RegisterInputHandler(&_inputHandler);
 }
 
 void GameManager::Update()
@@ -16,7 +17,4 @@ GameManager::~GameManager()
 {
 	delete _game;
 	_game = nullptr;
-
-	//delete _mainMenu;
-	//_mainMenu = nullptr;
 }

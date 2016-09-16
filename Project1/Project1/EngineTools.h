@@ -1,22 +1,22 @@
 #pragma once
 
 #include "RenderManager.h"
-#include "CustomInputManager.h"
+#include "InputManager.h"
 #include <assert.h>
 
 
 class EngineTools
 {
 	public:
-		static void InitializeEngineTools(CustomInputManager* iM, SDL_Window* win, SDL_Renderer* renderer);
+		static void InitializeEngineTools(InputManager* iM, SDL_Window* win, SDL_Renderer* renderer);
 		static void FinalizeEngineTools();
-		static CustomInputManager& InputService();
+		static InputManager& InputService();
 		static RenderManager& RenderService();
 		~EngineTools();
 	private:
 		EngineTools();
 		static bool _engineToolsInitialized;
-		static CustomInputManager* _inputManager;
+		static InputManager* _inputManager;
 		static RenderManager* _renderService;		
 };
 

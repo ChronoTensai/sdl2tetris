@@ -9,13 +9,11 @@ namespace InputDefinition
 	enum  InputKeys
 	{
 		ANY,
+		ADVANCE,
+		BACK,
 		UP,
 		DOWN,
 		LEFT,
-		RIGHT,
-		NUM1,
-		NUM2,
-		RETURN,
-		ESCAPE
+		RIGHT		
 	};
 }

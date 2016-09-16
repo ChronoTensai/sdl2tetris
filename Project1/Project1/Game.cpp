@@ -2,25 +2,13 @@
 
 Game::Game()
 {
+	CreateTetrominioPool();
 	gameBoard = new Board(&HEIGHT_BOARD, &WIDTH_BOARD, BOARD_X, BOARD_Y, TILE_SIZE);
-	CreateAssetPool();
-	hasTetrominioActive = false;
-
-	//clbk = InputHandlers::my_callback;
 	
-
-	/*inputCallback callbackTow = &InputHandlers::my_callback;
-	EngineTools::InputService().RegisterInputTwo(callbackTow, x);*/
-
-	//EngineTools::InputService().RegisterInputTwo(callbackTow(clbk, a));
-	/*EngineTools::InputService().RegisterInput(InputKeys::UP, RotateTetrominio);
-	EngineTools::InputService().RegisterInput(InputKeys::LEFT, MoveLeftTetrominio);
-	EngineTools::InputService().RegisterInput(InputKeys::RIGHT, MoveRightTetrominio);
-	EngineTools::InputService().RegisterInput(InputKeys::DOWN, DownTetrominio);*/
-
+	hasTetrominioActive = false;
 }
 
-void Game::CreateAssetPool()
+void Game::CreateTetrominioPool()
 {
 	tetrominioMap[0] = new IBlock(&TILE_SIZE);
 	tetrominioMap[1] = new JBlock(&TILE_SIZE);
@@ -32,11 +20,9 @@ void Game::CreateAssetPool()
 }
 
 
-
-
 //Primero se consumen los inputs
 
-void Game::RotateTetrominio()
+void Game::OnPressUp()
 {
 	printf("RotateTetrominio \n");
 	//activeTetrominio->RotateLeft();
@@ -44,7 +30,7 @@ void Game::RotateTetrominio()
 }
 
 
-void Game::MoveLeftTetrominio()
+void Game::OnPressLeft()
 {
 	printf("MoveLeftTetrominio  \n");
 	/*if (activeTetrominio->X >= BOARD_X && && activeTetrominio->X < BOARD_X + (TILE_SIZE * WIDTH_BOARD))
@@ -54,7 +40,7 @@ void Game::MoveLeftTetrominio()
 
 }
 
-void Game::MoveRightTetrominio()
+void Game::OnPressRight()
 {
 	printf("MoveRightTetrominio \n");
 	/*if (activeTetrominio->X >= BOARD_X && && activeTetrominio->X < BOARD_X + (TILE_SIZE * WIDTH_BOARD))
@@ -65,7 +51,7 @@ void Game::MoveRightTetrominio()
 
 }
 
-void Game::DownTetrominio()
+void Game::OnPressDown()
 {
 	printf("DownTetrominio \n");
 	/*if (!hasTetrominioActive)
@@ -73,6 +59,18 @@ void Game::DownTetrominio()
 		UpdateGame();
 	}*/
 	
+}
+
+void Game::Advance()
+{
+	printf("Advance \n");
+
+}
+
+void Game::Back()
+{
+	printf("Back \n");
+
 }
 
 //Despues se llama al Update
@@ -160,6 +158,8 @@ void Game::Update()
 		gameBoard->Redraw();
 	}
 }
+
+
 
 void Game::UpdateGame()
 {

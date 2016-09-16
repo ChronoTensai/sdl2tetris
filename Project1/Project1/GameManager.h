@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Game.h"
-#include "MainMenu.h"
+#include "InputHandler.h"
+#include "EngineTools.h"
 
 class GameManager
 {
@@ -10,9 +11,7 @@ public:
 	void Update();
 	~GameManager();
 private:
-	bool init;
 	Game* _game;
-	MainMenu* _mainMenu;
-
+	InputHandler _inputHandler;
 };
 

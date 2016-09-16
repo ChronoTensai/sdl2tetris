@@ -119,6 +119,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="IBlock.cpp" />
     <ClCompile Include="JBlock.cpp" />
     <ClCompile Include="LBlock.cpp" />
@@ -128,7 +129,7 @@
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Game.cpp" />
-    <ClCompile Include="CustomInputManager.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="GameLoop.cpp" />
     <ClCompile Include="MainMenu.cpp" />
@@ -140,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="GameScreen.h" />
     <ClInclude Include="InputDefintion.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="RenderManager.h" />
@@ -147,7 +149,7 @@
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="CustomInputManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="GameLoop.h" />
     <ClInclude Include="MainMenu.h" />

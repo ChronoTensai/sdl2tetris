@@ -1,43 +1,19 @@
 #pragma once
 
-#include <stdio.h>
-#include "EngineTools.h"
+#include "GameScreen.h"
 #include "Game.h"
 
-
-
-
-class MainMenu
+class MainMenu : public GameScreen
 {
 	public:
 		MainMenu();
-		void CallbackOne();
 		~MainMenu();
+		virtual void Advance() override;
+		virtual void OnPressUp() override;
+		virtual void Update() override;
 	private:
-		typedef  void (MainMenu::*MainMenuPtr)();
-
-		class FirstCallback : public InputHandler
-		{
-		public:
-			FirstCallback(MainMenuPtr callbackPtr) { _callback = callbackPtr; };
-			virtual void Callback() override { /*_callback();*/ }
-		private:
-			MainMenuPtr _callback;
-		};
-
-		FirstCallback* Test;
-		
-		/**/
-		class SecondCallback : public InputHandler
-		{
-		public:
-			SecondCallback(Game* callbackPtr) { _callback = callbackPtr; };
-			virtual void Callback() override { _callback->RotateTetrominio();}
-		private:
-			Game* _callback;
-		};
-		SecondCallback* TestTwo;
-		
-		Game* _game;
+		Game* _game;		
 };
+		
+		
 
