@@ -3,7 +3,7 @@
 
 bool GameEngine::InitVideo()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 		return false;
@@ -81,7 +81,6 @@ void GameEngine::AfterUpdate()
 	{
 		SDL_Delay(SCREEN_TICKS_PER_FRAME - endTick);		
 	}
-	SDL_Delay(300);
 }
 
 GameEngine::~GameEngine()

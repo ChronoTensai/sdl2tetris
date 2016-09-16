@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GameScreen.h"
+#include "Timer.h"
 #include "Board.h"
 #include "Tetrimino.h"
 #include <stdlib.h>
@@ -25,6 +26,8 @@ class Game : public GameScreen
 		const int  BOARD_X = 10;
 		const int  BOARD_Y = 100;
 		const int  TILE_SIZE = 32;
+		float _timeToDownTetrominio = 1100; //Reducir para generar diferentes niveles
+
 		void UpdateGame();
 		void PickTetrominio();
 		void CreateTetrominioPool();
@@ -34,5 +37,6 @@ class Game : public GameScreen
 		bool hasTetrominioActive;
 		bool EndOfGame = false;
 		map<int, Tetrimino*> tetrominioMap;
+		RecursiveTimer _rTimer;
 };
 

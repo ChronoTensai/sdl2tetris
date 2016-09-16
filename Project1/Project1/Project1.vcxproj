@@ -137,6 +137,7 @@
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="TBlock.cpp" />
     <ClCompile Include="Tetrimino.cpp" />
+    <ClCompile Include="Timer.cpp" />
     <ClCompile Include="ZBlock.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +156,7 @@
     <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tetrimino.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

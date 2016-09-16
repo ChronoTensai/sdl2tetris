@@ -4,7 +4,8 @@ Game::Game()
 {
 	CreateTetrominioPool();
 	gameBoard = new Board(&HEIGHT_BOARD, &WIDTH_BOARD, BOARD_X, BOARD_Y, TILE_SIZE);
-	
+	_rTimer = RecursiveTimer(_timeToDownTetrominio);
+
 	hasTetrominioActive = false;
 }
 
@@ -25,7 +26,7 @@ void Game::CreateTetrominioPool()
 void Game::OnPressUp()
 {
 	printf("RotateTetrominio \n");
-	//activeTetrominio->RotateLeft();
+	activeTetrominio->RotateLeft();
 
 }
 
@@ -33,20 +34,20 @@ void Game::OnPressUp()
 void Game::OnPressLeft()
 {
 	printf("MoveLeftTetrominio  \n");
-	/*if (activeTetrominio->X >= BOARD_X && && activeTetrominio->X < BOARD_X + (TILE_SIZE * WIDTH_BOARD))
+	if (activeTetrominio->X >= BOARD_X && activeTetrominio->X < BOARD_X + (TILE_SIZE * WIDTH_BOARD))
 	{
 		activeTetrominio->X -= TILE_SIZE;
-	}*/
+	}
 
 }
 
 void Game::OnPressRight()
 {
 	printf("MoveRightTetrominio \n");
-	/*if (activeTetrominio->X >= BOARD_X && && activeTetrominio->X < BOARD_X + (TILE_SIZE * WIDTH_BOARD))
+	if (activeTetrominio->X >= BOARD_X && activeTetrominio->X < BOARD_X + (TILE_SIZE * WIDTH_BOARD))
 	{
 		activeTetrominio->X += TILE_SIZE;
-	}*/
+	}
 
 
 }
@@ -54,10 +55,10 @@ void Game::OnPressRight()
 void Game::OnPressDown()
 {
 	printf("DownTetrominio \n");
-	/*if (!hasTetrominioActive)
+	if (hasTetrominioActive)
 	{
 		UpdateGame();
-	}*/
+	}
 	
 }
 
@@ -148,7 +149,11 @@ void Game::Update()
 		}
 		else
 		{
-			UpdateGame();
+			if (_rTimer.TimerComplete())
+			{
+				UpdateGame();
+				_rTimer.ResetTimer();
+			}
 			gameBoard->Redraw();
 			activeTetrominio->Redraw();
 		}
