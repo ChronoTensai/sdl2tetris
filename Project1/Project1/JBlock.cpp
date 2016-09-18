@@ -12,6 +12,7 @@ JBlock::JBlock(const int* tileSize) : Tetrimino(tileSize)
 	};
 
 	std::memcpy(logicMatriz, auxMatriz, sizeof(logicMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);
+	_rotateAvailable = RotateAvailable::All;
 
 	tintColor.R = 0;
 	tintColor.G = 0;

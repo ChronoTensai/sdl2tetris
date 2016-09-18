@@ -8,30 +8,59 @@
 
 using namespace std;
 
+struct LogicRectangle
+{
+	int OffsetX;
+	int OffsetY;
+	int W;
+	int H;
+	//Change Name
+	int ColisionHeight() { return H + OffsetY; }
+	int ColisionWidth() { return W + OffsetX; }
+	void ResetValues()
+	{
+		W = H = 0;
+		OffsetX = OffsetY = INT_MAX;
+	}
+};
+
 class Tetrimino
 {
 	public:
-		void RotateLeft();
-		void RotateRight();
-		int X = 0;
-		int Y = 0;
-		void Redraw();
-		void GoToBoard(int boardX, int boardY);
-		int* GetLogicMatriz();
+		const int SIZE_MATRIZ = 4;
+
 		Tetrimino(const int* tileSize);
 		Tetrimino();
 		virtual ~Tetrimino();
+
+		int* GetLogicMatriz();
+		LogicRectangle LogicR;
+
+		void Rotate();		
+		void MoveLeft();
+		void MoveRight();
+		void MoveDown();
+		void Redraw();
+		void SetPosition(int x, int y);
+		void ResetLogicMatrix();
 	protected:
-		const string TILE_PATH = "Assets/Gameplay/trinomiotile.jpg";
-		const int TILES_PER_ITEM = 4;
 		const int DEFAULT_COLOR = 255;
-		const int* _tileSize;
-		Color tintColor;
-		int* logicMatriz;
+		Color tintColor;		
 		Sprite* spriteMatriz;
-		void Draw();
-	public:
-		const int SIZE_MATRIZ = 4;
+		enum RotateAvailable { None, Two, All };
+		RotateAvailable _rotateAvailable = RotateAvailable::None;
+		int* logicMatriz;
+		void Draw();		
+	private:
+		const int TILES_PER_ITEM = 4;
+		const int* _tileSize;
+		const string TILE_PATH = "Assets/Gameplay/trinomiotile.jpg";
+		int _spriteX = 0;
+		int _spriteY = 0;
+		int _rotateTimes = 0;
+		void RotateRight();
+		void RotateLeft();
+		void CalculateLogicValues();
 };
 
 

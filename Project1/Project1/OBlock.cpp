@@ -12,6 +12,8 @@ OBlock::OBlock(const int* tileSize) : Tetrimino(tileSize)
 	};
 
 	std::memcpy(logicMatriz, auxMatriz, sizeof(logicMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);
+	_rotateAvailable = RotateAvailable::None;
+
 
 	tintColor.R = DEFAULT_COLOR;
 	tintColor.G = DEFAULT_COLOR;
