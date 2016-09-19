@@ -36,7 +36,9 @@ class Tetrimino
 		int* GetLogicMatriz();
 		LogicRectangle LogicR;
 
-		void Rotate();		
+		int* GenerateMatrizRotate();		
+		void ApplyRotateMatriz(int * rotateMatriz);
+		void ResetRotateMatriz(int * rotateMatriz);
 		void MoveLeft();
 		void MoveRight();
 		void MoveDown();
@@ -50,6 +52,7 @@ class Tetrimino
 		enum RotateAvailable { None, Two, All };
 		RotateAvailable _rotateAvailable = RotateAvailable::None;
 		int* logicMatriz;
+		int* orginalMatriz;
 		void Draw();		
 	private:
 		const int TILES_PER_ITEM = 4;
@@ -58,9 +61,9 @@ class Tetrimino
 		int _spriteX = 0;
 		int _spriteY = 0;
 		int _rotateTimes = 0;
-		void RotateRight();
-		void RotateLeft();
-		void CalculateLogicValues();
+		int* RotateMatrizToRight(int * matrizTarget);
+		int * RotateMatrizToLeft(int * matrizTarget);
+		void CalculateLogicValues(int * matrizToCheck);
 };
 
 

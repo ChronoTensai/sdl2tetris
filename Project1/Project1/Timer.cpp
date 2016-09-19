@@ -21,3 +21,23 @@ bool RecursiveTimer::TimerComplete()
 RecursiveTimer::~RecursiveTimer()
 {
 }
+
+
+void FrameTimer::StartTimer(float delay)
+{
+	_targetFrame = EngineTools::FrameCount + delay;
+}
+
+int FrameTimer::CurrentFrame()
+{
+	return _targetFrame - EngineTools::FrameCount;
+}
+
+bool FrameTimer::FrameTimerComplete()
+{
+	return EngineTools::FrameCount >= _targetFrame;
+}
+
+FrameTimer::~FrameTimer()
+{
+}

@@ -1,4 +1,12 @@
-﻿  Tetrimino.cpp
-d:\documents\proyectos\tetris\sdl2tetris\project1\project1\tetrimino.cpp(227): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Game.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\game.cpp(147): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.exe
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.pdb (Partial PDB)
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\libjpeg-9.dll
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\libpng16-16.dll
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\libtiff-5.dll
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\libwebp-4.dll
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\SDL2.dll
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\SDL2_image.dll
+  D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\zlib1.dll
+  7 File(s) copied

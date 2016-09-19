@@ -1,6 +1,7 @@
 #include "EngineTools.h"
 
 //This variable should only return function pointer, not the full class
+int EngineTools::FrameCount = 0;
 InputManager* EngineTools::_inputManager = nullptr;
 RenderManager* EngineTools::_renderService = nullptr;
 

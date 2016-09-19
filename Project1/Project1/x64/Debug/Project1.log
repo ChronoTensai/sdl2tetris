@@ -1,0 +1,49 @@
+﻿  ZBlock.cpp
+  Timer.cpp
+  Tetrimino.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\tetrimino.cpp(227): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  TBlock.cpp
+  Sprite.cpp
+  SBlock.cpp
+  MainMenu.cpp
+  GameLoop.cpp
+  Main.cpp
+  InputManager.cpp
+  Game.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\game.cpp(93): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  GameManager.cpp
+  GameEngine.cpp
+  EngineTools.cpp
+  RenderManager.cpp
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\rendermanager.cpp(37): warning C4244: 'argument': conversion from 'float' to 'Uint8', possible loss of data
+  OBlock.cpp
+  LBlock.cpp
+  JBlock.cpp
+  IBlock.cpp
+  GameScreen.cpp
+  Generating Code...
+  Compiling...
+  Board.cpp
+  Generating Code...
+RenderManager.obj : error LNK2019: unresolved external symbol SDL_GetError referenced in function "public: struct SDL_Texture * __cdecl RenderManager::LoadTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?LoadTexture@RenderManager@@QEAAPEAUSDL_Texture@@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+GameEngine.obj : error LNK2001: unresolved external symbol SDL_GetError
+RenderManager.obj : error LNK2019: unresolved external symbol SDL_SetTextureColorMod referenced in function "public: void __cdecl RenderManager::TintTexture(struct SDL_Texture *,float,float,float)" (?TintTexture@RenderManager@@QEAAXPEAUSDL_Texture@@MMM@Z)
+RenderManager.obj : error LNK2019: unresolved external symbol SDL_RenderCopy referenced in function "public: void __cdecl RenderManager::RenderTexture(struct SDL_Rect,struct SDL_Texture *)" (?RenderTexture@RenderManager@@QEAAXUSDL_Rect@@PEAUSDL_Texture@@@Z)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_CreateWindow referenced in function "private: bool __cdecl GameEngine::CreateWindowRendered(void)" (?CreateWindowRendered@GameEngine@@AEAA_NXZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_DestroyWindow referenced in function "public: __cdecl GameEngine::~GameEngine(void)" (??1GameEngine@@QEAA@XZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_PollEvent referenced in function "public: void __cdecl GameEngine::BeforeUpdate(bool *)" (?BeforeUpdate@GameEngine@@QEAAXPEA_N@Z)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_CreateRenderer referenced in function "private: bool __cdecl GameEngine::CreateWindowRendered(void)" (?CreateWindowRendered@GameEngine@@AEAA_NXZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_RenderSetLogicalSize referenced in function "private: bool __cdecl GameEngine::CreateWindowRendered(void)" (?CreateWindowRendered@GameEngine@@AEAA_NXZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_RenderClear referenced in function "public: void __cdecl GameEngine::BeforeUpdate(bool *)" (?BeforeUpdate@GameEngine@@QEAAXPEA_N@Z)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_RenderPresent referenced in function "public: void __cdecl GameEngine::AfterUpdate(void)" (?AfterUpdate@GameEngine@@QEAAXXZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_DestroyRenderer referenced in function "public: __cdecl GameEngine::~GameEngine(void)" (??1GameEngine@@QEAA@XZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_GetTicks referenced in function "public: void __cdecl GameEngine::AfterUpdate(void)" (?AfterUpdate@GameEngine@@QEAAXXZ)
+Timer.obj : error LNK2001: unresolved external symbol SDL_GetTicks
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_Delay referenced in function "public: void __cdecl GameEngine::AfterUpdate(void)" (?AfterUpdate@GameEngine@@QEAAXXZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_Init referenced in function "private: bool __cdecl GameEngine::InitVideo(void)" (?InitVideo@GameEngine@@AEAA_NXZ)
+GameEngine.obj : error LNK2019: unresolved external symbol SDL_Quit referenced in function "public: __cdecl GameEngine::~GameEngine(void)" (??1GameEngine@@QEAA@XZ)
+Sprite.obj : error LNK2019: unresolved external symbol SDL_DestroyTexture referenced in function "public: __cdecl Sprite::~Sprite(void)" (??1Sprite@@QEAA@XZ)
+MSVCRTD.lib(exe_main.obj) : error LNK2019: unresolved external symbol main referenced in function "int __cdecl invoke_main(void)" (?invoke_main@@YAHXZ)
+D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\lib\sdl2\SDL2.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\lib\sdl2\SDL2main.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\x64\Debug\Project1.exe : fatal error LNK1120: 17 unresolved externals

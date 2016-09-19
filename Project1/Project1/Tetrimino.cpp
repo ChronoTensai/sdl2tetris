@@ -8,93 +8,98 @@ Tetrimino::Tetrimino(const int* tileSize)
 {
 	_tileSize = tileSize;
 	logicMatriz = new int[SIZE_MATRIZ * SIZE_MATRIZ];
+	orginalMatriz = new int[SIZE_MATRIZ * SIZE_MATRIZ];
 	spriteMatriz = new Sprite[TILES_PER_ITEM];
 }
 
-
-void Tetrimino::Rotate()
+//Rotation
+int* Tetrimino::GenerateMatrizRotate()
 {
 	switch (_rotateAvailable)
 	{
 		case RotateAvailable::Two:
-			if (_rotateTimes == 0) RotateRight();
-			else RotateLeft();
+			if (_rotateTimes == 0) return RotateMatrizToRight(logicMatriz);
+			else return RotateMatrizToLeft(logicMatriz);
 			break;
-		case RotateAvailable::All:
-			RotateRight();
-			if (_rotateTimes > 4) _rotateTimes = 0;			
+		case RotateAvailable::All:			
+			return RotateMatrizToRight(logicMatriz);
 			break;
 		default:
 			break;
 	}
+	return nullptr;
 }
 
-void Tetrimino::RotateRight()
+int* Tetrimino::RotateMatrizToRight(int* matrizTarget)
 {
 	_rotateTimes++;
+	if (_rotateTimes > 4) _rotateTimes = 0;
 
 	const int auxIndexer = SIZE_MATRIZ - 1;
-
 	int* auxMatriz = new int[SIZE_MATRIZ*SIZE_MATRIZ];
 
-	int changeIndex;
-	int currentIndex;
-
-	std::memcpy(auxMatriz, logicMatriz, sizeof(logicMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);
+	std::memcpy(auxMatriz, matrizTarget, sizeof(matrizTarget) * SIZE_MATRIZ * SIZE_MATRIZ);
 
 	for (int i = 0; i < SIZE_MATRIZ; i++)
 	{
 		for (int j = 0; j < SIZE_MATRIZ; j++)
 		{
-			currentIndex = j + (SIZE_MATRIZ*i);
-			changeIndex = (auxIndexer - i) + SIZE_MATRIZ * j;
-			auxMatriz[changeIndex] = logicMatriz[currentIndex];
+			auxMatriz[(auxIndexer - i) + SIZE_MATRIZ * j] = matrizTarget[j + (SIZE_MATRIZ*i)];
 
 		}
 	}
 
-	delete [] logicMatriz;
-
-	logicMatriz = auxMatriz;
-	auxMatriz = nullptr;
-
-	CalculateLogicValues();
+	CalculateLogicValues(auxMatriz);
+	return auxMatriz;
 }
 
-void Tetrimino::RotateLeft()
+int* Tetrimino::RotateMatrizToLeft(int* matrizTarget)
 {
 	_rotateTimes--;
 
 	const int auxIndexer = (SIZE_MATRIZ - 1) * SIZE_MATRIZ;
 	int* auxMatriz = new int[SIZE_MATRIZ*SIZE_MATRIZ];
 
-	int changeIndex;
-	int currentIndex;
-
-	std::memcpy(auxMatriz, logicMatriz, sizeof(logicMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);
+	std::memcpy(auxMatriz, matrizTarget, sizeof(matrizTarget) * SIZE_MATRIZ * SIZE_MATRIZ);
 
 	for (int i = 0; i < SIZE_MATRIZ; i++)
 	{
 		for (int j = 0; j < SIZE_MATRIZ; j++)
 		{
-			currentIndex = j + (SIZE_MATRIZ*i);
-			changeIndex = auxIndexer - SIZE_MATRIZ * j + i;
-			auxMatriz[changeIndex] = logicMatriz[currentIndex];
-			printf("Index %d -> %d \n", currentIndex, changeIndex);
-
+			auxMatriz[auxIndexer - SIZE_MATRIZ * j + i] = matrizTarget[j + (SIZE_MATRIZ*i)];
 		}
 	}
 
+	CalculateLogicValues(auxMatriz);
+	return auxMatriz;
+}
+
+void Tetrimino::ApplyRotateMatriz(int* rotateMatriz)
+{
 	delete[] logicMatriz;
+	logicMatriz = rotateMatriz;
+}
 
-	logicMatriz = auxMatriz;
-	auxMatriz = nullptr;
+void Tetrimino::ResetRotateMatriz(int* rotateMatriz)
+{
+	delete[] rotateMatriz;
+	rotateMatriz = nullptr;
 
-	CalculateLogicValues();
+	switch (_rotateAvailable)
+	{
+		case RotateAvailable::Two:
+			if (_rotateTimes == 0) _rotateTimes++;
+			else _rotateTimes--;
+			break;
+		case RotateAvailable::All:
+			_rotateTimes--;
+			break;	
+	}
+	CalculateLogicValues(logicMatriz);
 }
 
 
-
+// Move 
 void Tetrimino::MoveLeft()
 {
 	_spriteX -= *_tileSize;
@@ -110,7 +115,7 @@ void Tetrimino::MoveDown()
 	_spriteY += *_tileSize;
 }
 
-void Tetrimino::CalculateLogicValues()
+void Tetrimino::CalculateLogicValues(int* matrizToCheck)
 {
 	LogicR.ResetValues();
 
@@ -121,10 +126,8 @@ void Tetrimino::CalculateLogicValues()
 	bool foundTileInWidth = false;
 	bool foundTileInHeight = false;
 	bool foundOffsetX = false;
-	bool foundOffsetY = false;
-	
+	bool foundOffsetY = false;	
 
-	//OnlyWorksInQuadMatriz	
 	for (int i = 0; i < SIZE_MATRIZ; i++)
 	{
 		foundTileInWidth = false;
@@ -132,7 +135,7 @@ void Tetrimino::CalculateLogicValues()
 
 		for (int j = 0; j < SIZE_MATRIZ; j++)
 		{
-			if (!foundTileInWidth && logicMatriz[j + (SIZE_MATRIZ*i)] == 1)
+			if (!foundTileInWidth && matrizToCheck[j + (SIZE_MATRIZ*i)] == 1)
 			{				
 				LogicR.H++;
 				foundTileInWidth = true;
@@ -144,7 +147,7 @@ void Tetrimino::CalculateLogicValues()
 				}		
 			}
 
-			if (!foundTileInHeight && logicMatriz[i + (SIZE_MATRIZ*j)] == 1)
+			if (!foundTileInHeight && matrizToCheck[i + (SIZE_MATRIZ*j)] == 1)
 			{			
 				LogicR.W++;
 				foundTileInHeight = true;
@@ -158,9 +161,6 @@ void Tetrimino::CalculateLogicValues()
 			}	
 		}	
 	}
-
-	//printf("Rlogic W: %d H: %d  X: %d Y: %d \n", LogicR.W, LogicR.H, LogicR.OffsetX, LogicR.OffsetY);
-
 }
 
 void Tetrimino::Redraw()
@@ -191,26 +191,8 @@ void Tetrimino::SetPosition(int x, int y)
 
 void Tetrimino::ResetLogicMatrix()
 {
-	if (_rotateTimes != 0)//I dont like this
-	{
-		if (_rotateTimes > 2)
-		{
-			while (_rotateTimes !=0)
-			{
-				RotateRight();
-				if (_rotateTimes > 0)
-					_rotateTimes = 0;
-			}
-			
-		}
-		else
-		{
-			while (_rotateTimes != 0)
-			{
-				RotateLeft();
-			}
-		}
-	}
+	std::memcpy(logicMatriz, orginalMatriz, sizeof(int*) * SIZE_MATRIZ * SIZE_MATRIZ);
+	CalculateLogicValues(orginalMatriz);
 }
 
 void Tetrimino::Draw()
@@ -221,7 +203,7 @@ void Tetrimino::Draw()
 	{
 		for (int j = 0; j < SIZE_MATRIZ; j++)
 		{
-			if (logicMatriz[j + (SIZE_MATRIZ*i)] == 1)
+			if (orginalMatriz[j + (SIZE_MATRIZ*i)] == 1)
 			{
 				spriteMatriz[spriteIndex] = *(new Sprite(TILE_PATH, j**_tileSize, i**_tileSize, *_tileSize, *_tileSize));
 				spriteMatriz[spriteIndex].Tint(tintColor.R, tintColor.G, tintColor.B);				
@@ -230,13 +212,14 @@ void Tetrimino::Draw()
 		}
 	}
 
-	CalculateLogicValues();
+	CalculateLogicValues(orginalMatriz);
 }
 
 
 
 Tetrimino::~Tetrimino()
 {	
+	delete[] orginalMatriz;
 	delete[] logicMatriz;
 	delete [] spriteMatriz;
 }

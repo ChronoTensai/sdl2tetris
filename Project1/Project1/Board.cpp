@@ -28,19 +28,32 @@ Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 
 void Board::Redraw()
 {
+	int currentIndex;
 	for (int i = 0; i < _height; i++)
 	{
 		for (int j = 0; j < _width; j++)
 		{
-			if (logicMatriz[j + (_width*i)] == 0)
+			currentIndex = j + (_width*i);
+			if (logicMatriz[currentIndex] == 0)
 			{
-				spriteMatriz[j + (_width*i)].Tint(0, 0, 51);				
+				spriteMatriz[currentIndex].Tint(0, 0, 51);
 			}
-			else
+			else if (AnimationActive && logicMatriz[currentIndex] == 2)
 			{
-				spriteMatriz[j + (_width*i)].Tint(224, 224, 224);
+				if (_frameTimer.CurrentFrame() % 2 == 0)
+				{
+					spriteMatriz[currentIndex].Tint(224, 224, 224);
+				}
+				else
+				{
+					spriteMatriz[currentIndex].Tint(0, 0, 51);
+				}
+			}			
+			else if(logicMatriz[currentIndex] == 1)
+			{
+				spriteMatriz[currentIndex].Tint(224, 224, 224);
 			}
-			spriteMatriz[j + (_width*i)].Add();
+			spriteMatriz[currentIndex].Add();
 		}
 	}
 }
@@ -71,46 +84,86 @@ void Board::UpdateLogicMatriz(int* newMatriz, int matrizSize, int logicX, int lo
 	}
 }
 
-/* No se usa se guarda por la logica */
-
-/*void Board::AddAtTopBoard(int* matriz,int w, int h)
+void Board::DeleteRowsAndDown(vector<int> rowsToDelete)
 {
-	//RandomColors
-	int matrizItem[4][4];
-
-	for ( int i = 0; i < h; i++)
+	_rowsDeleting = rowsToDelete;
+	AnimationActive = true;
+	
+	for (vector<int>::iterator iterator = _rowsDeleting.begin(); iterator < _rowsDeleting.end(); ++iterator)
 	{
-		for (int j = 0; j < w; j++)
-		{
-			matrizItem[i][j] = *(matriz + j + (w*i));
-		}
-	}
-
-	//PickCenterTileToAddItem
-	int centerId = floor((_width - w -1)/ 2);
-	for (int i = 0; i < h; i++)
-	{
-		for (int j = centerId; j < centerId + w ; j++)
-		{
-			if (matrizItem[i][j - centerId] == 1)
-			{
-				//logicMatriz[i][j] = matrizItem[i][j - centerId];
-				//spriteMatriz[i][j]->Add();
-			}
-		}
-	}
-
-	for (int i = 0; i < _height; i++)
-	{
-		printf("{ ");
 		for (int j = 0; j < _width; j++)
 		{
-			//printf("%d ,", logicMatriz[i][j]);
+			logicMatriz[j + (_width* (*iterator))] = 2;
 		}
-		printf(" } \n");
+	}
+
+	//StartAnimation
+	_frameTimer.StartTimer(FRAMES_DELETE_ANIMATION);
+}
+
+void Board::DownLines()
+{
+	int currentIndex;
+	int rowMoved = 0;
+
+	for (vector<int>::iterator iterator = _rowsDeleting.begin(); iterator < _rowsDeleting.end(); ++iterator)
+	{
+		for (int j = 0; j < _width; j++)
+		{
+			logicMatriz[j + (_width* (*iterator + rowMoved))] = 0;
+		}
+
+		for (int i = *iterator; i >= rowMoved * -1; i--)
+		{
+			for (int j = 0; j < _width; j++)
+			{
+				currentIndex = j + (_width* (i + rowMoved));
+				if (i <= 0)
+				{
+					logicMatriz[currentIndex] = 0;
+				}
+				else
+				{
+					logicMatriz[currentIndex] = logicMatriz[currentIndex - _width];
+				}				
+			}
+		}
+		rowMoved++;
 		
 	}
-	
+	AnimationActive = false;
+}
+
+
+void Board::Update()
+{
+	if (AnimationActive)
+	{
+		if (_frameTimer.FrameTimerComplete())
+			DownLines();
+	}
+	Redraw();
+}
+
+bool Board::BoardAnimationActive()
+{
+	return AnimationActive;
+}
+
+/* No se usa se guarda por la logica */
+
+/*void Board::PrintMatriz(int* matriz)
+{
+	for (int i = 0; i < SIZE_MATRIZ; i++)
+	{
+		printf("{ ");
+		for (int j = 0; j < SIZE_MATRIZ; j++)
+		{
+			printf("%d ,", matriz[i + (SIZE_MATRIZ*j)]);
+		}
+		printf(" } \n");
+
+	}	
 }*/
 
 
@@ -120,3 +173,5 @@ Board::~Board()
 	delete[] spriteMatriz;
 	delete [] logicMatriz;
 }
+
+

@@ -81,6 +81,7 @@ void GameEngine::AfterUpdate()
 	{
 		SDL_Delay(SCREEN_TICKS_PER_FRAME - endTick);		
 	}
+	EngineTools::FrameCount++;
 }
 
 GameEngine::~GameEngine()

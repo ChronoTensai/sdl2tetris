@@ -5,11 +5,11 @@
 #include "Board.h"
 #include "Tetrimino.h"
 #include <stdlib.h>
+#include <vector>
 #include <ctime>
 #include <map>
 
 
-enum CollisionType { DOWN, LEFT, RIGHT };
 
 
 class Game : public GameScreen
@@ -33,23 +33,23 @@ class Game : public GameScreen
 		const int  TILE_SIZE = 32;
 		RecursiveTimer _rTimer;
 		float _timeToDownTetrominio = 1100; //Reducir para generar diferentes niveles
-
+		enum CollisionType { DOWN, LEFT, RIGHT, ROTATE };
+		enum GameState{ InactiveTetrominio,ActiveTetrominio, WaitingBoard, EndOfGame};
+		
+		GameState _currentGameState = InactiveTetrominio;
 		Board* gameBoard;
-
 		map<int, Tetrimino*> tetrominioMap;
 
 		Tetrimino* activeTetrominio;
-		bool hasTetrominioActive;
 		int LogicTetrominioX;
 		int LogicTetrominioY;
-
-		bool EndOfGame = false;
 
 		void CreateTetrominioPool();
 		void PickTetrominio();
 		void UpdateGame();
 		bool CheckBottomBoard();
-		bool CheckCollision(CollisionType collision);
+		bool CheckCollision(CollisionType collision, int * tetrominioMatriz);		
+		void CheckLinesCompletesInBoard();
 };
 		
 

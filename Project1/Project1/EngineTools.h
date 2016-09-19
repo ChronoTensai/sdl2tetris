@@ -8,6 +8,7 @@
 class EngineTools
 {
 	public:
+		static int FrameCount;
 		static void InitializeEngineTools(InputManager* iM, SDL_Window* win, SDL_Renderer* renderer);
 		static void FinalizeEngineTools();
 		static InputManager& InputService();
