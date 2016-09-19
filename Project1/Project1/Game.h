@@ -32,13 +32,17 @@ class Game : public GameScreen
 		const int  BOARD_Y = 100;
 		const int  TILE_SIZE = 32;
 		RecursiveTimer _rTimer;
-		float _timeToDownTetrominio = 1100; //Reducir para generar diferentes niveles
+		float _timeToDownTetrominio = 900; //Reducir para generar diferentes niveles
 		enum CollisionType { DOWN, LEFT, RIGHT, ROTATE };
 		enum GameState{ InactiveTetrominio,ActiveTetrominio, WaitingBoard, EndOfGame};
 		
 		GameState _currentGameState = InactiveTetrominio;
 		Board* gameBoard;
 		map<int, Tetrimino*> tetrominioMap;
+
+		const string EndOfGameAssetPath = "Assets/Gameplay/gameOver.jpg";
+		const int  EndOfGameSize = 300;
+		Sprite* EndOfGameAsset;
 
 		Tetrimino* activeTetrominio;
 		int LogicTetrominioX;

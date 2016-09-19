@@ -5,6 +5,7 @@ Game::Game()
 	CreateTetrominioPool();
 	gameBoard = new Board(&HEIGHT_BOARD, &WIDTH_BOARD, BOARD_X, BOARD_Y, TILE_SIZE);
 	_rTimer = RecursiveTimer(_timeToDownTetrominio);
+	EndOfGameAsset = new Sprite(EndOfGameAssetPath, BOARD_X + WIDTH_BOARD*TILE_SIZE/2 - EndOfGameSize/2, BOARD_Y + HEIGHT_BOARD*TILE_SIZE / 2 - EndOfGameSize / 2, EndOfGameSize, EndOfGameSize);
 }
 
 void Game::CreateTetrominioPool()
@@ -130,6 +131,12 @@ void Game::OnPressDown()
 void Game::Advance()
 {
 	printf("Advance \n");
+	if (_currentGameState == EndOfGame)
+	{
+		gameBoard->CleanBoard();
+		_currentGameState = InactiveTetrominio;
+	}
+
 
 }
 
@@ -211,13 +218,16 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 				if (tetrominioMatriz[currentTetrominioIndex] == boardMatriz[currentBoardIndex])
 				{
 					//Out top bounds
-					if (collision == DOWN && LogicCollisionTetrominioY - activeTetrominio->LogicR.OffsetY < 0)
+					if (collision == DOWN)
 					{
-						_currentGameState = EndOfGame;						
-					}
-					else
-					{
-						_currentGameState = WaitingBoard;
+						if (LogicTetrominioY - activeTetrominio->LogicR.OffsetY <= 0)
+						{
+							_currentGameState = EndOfGame;
+						}
+						else
+						{
+							_currentGameState = WaitingBoard;
+						}
 					}
 					//Collision with other Tetrominio
 					return true;					
@@ -292,6 +302,7 @@ void Game::Update()
 			break;
 		case EndOfGame:
 			gameBoard->Update();
+			EndOfGameAsset->Add();
 		break;
 	}
 
@@ -324,6 +335,7 @@ Game::~Game()
 {
 	//delete gameBoard;
 	gameBoard = nullptr;
+	EndOfGameAsset = nullptr;
 
 	for (std::map<int, Tetrimino*>::iterator it = tetrominioMap.begin(); it != tetrominioMap.end(); ++it)
 	{

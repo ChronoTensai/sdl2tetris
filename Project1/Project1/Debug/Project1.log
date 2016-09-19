@@ -1,5 +1,5 @@
 ﻿  Game.cpp
-d:\documents\proyectos\tetris\sdl2tetris\project1\project1\game.cpp(147): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+d:\documents\proyectos\tetris\sdl2tetris\project1\project1\game.cpp(154): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.exe
   Project1.vcxproj -> D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Debug\Project1.pdb (Partial PDB)
   D:\Documents\Proyectos\Tetris\sdl2tetris\Project1\Project1\\bin\sdl2\libjpeg-9.dll

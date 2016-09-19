@@ -14,6 +14,8 @@ class Board
 public:
 	Board(const int * height,const int * width, int x, int y, int tilesSize);
 	~Board();
+	void CleanBoard();
+
 	void Update();
 	int *GetLogicMatriz();
 	void UpdateLogicMatriz(int * newMatriz, int matrizSize, int logicX, int logicY);

@@ -26,6 +26,17 @@ Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 }
 
 
+void Board::CleanBoard()
+{
+	for (int i = 0; i < _height; i++)
+	{
+		for (int j = 0; j < _width; j++)
+		{
+			logicMatriz[j + (_width*i)] = 0;		
+		}
+	}
+}
+
 void Board::Redraw()
 {
 	int currentIndex;
