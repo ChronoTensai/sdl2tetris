@@ -23,7 +23,7 @@ class GameEngine
 	private:
 		bool InitVideo();
 		bool CreateWindowRendered();
-		const int SCREEN_WIDHT = 800;
+		const int SCREEN_WIDTH = 800;
 		const int SCREEN_HEIGTH = 600;
 		SDL_Window* window;
 		SDL_Renderer* renderer;

@@ -1,8 +1,9 @@
 #include "RenderManager.h"
 
-RenderManager::RenderManager(SDL_Renderer* screenSurface, SDL_Window* window)
+
+RenderManager::RenderManager(SDL_Renderer * renderer, SDL_Window * window)
 {
-	gRenderer = screenSurface;
+	gRenderer = renderer;
 	gWindow = window;
 }
 
@@ -30,6 +31,15 @@ SDL_Texture* RenderManager::LoadTexture(std::string path)
 void RenderManager::RenderTexture(SDL_Rect rectTexture, SDL_Texture * source)
 {
 	SDL_RenderCopy(gRenderer, source, NULL, &rectTexture);
+}
+
+void RenderManager::RenderBackground(SDL_Texture * source)
+{
+	SDL_Rect Rect;
+	Rect.x = Rect.y = 0;	
+	SDL_GetWindowSize(gWindow, &Rect.w, &Rect.h);
+
+	SDL_RenderCopy(gRenderer, source, NULL, &Rect);
 }
 
 void RenderManager::TintTexture(SDL_Texture * source, float r, float g, float b)

@@ -11,12 +11,25 @@ Game::Game()
 void Game::CreateTetrominioPool()
 {
 	tetrominioMap[0] = new IBlock(&TILE_SIZE);
+	nextTetrominioMap[0] = new NextIBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+
 	tetrominioMap[1] = new JBlock(&TILE_SIZE);
+	nextTetrominioMap[1] = new NextJBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+
 	tetrominioMap[2] = new LBlock(&TILE_SIZE);
+	nextTetrominioMap[2] = new NextLBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+
 	tetrominioMap[3] = new OBlock(&TILE_SIZE);
+	nextTetrominioMap[3] = new NextOBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+
 	tetrominioMap[4] = new SBlock(&TILE_SIZE);
+	nextTetrominioMap[4] = new NextSBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+
 	tetrominioMap[5] = new TBlock(&TILE_SIZE);
+	nextTetrominioMap[5] = new NextTBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+
 	tetrominioMap[6] = new ZBlock(&TILE_SIZE);
+	nextTetrominioMap[6] = new NextZBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
 }
 
 
@@ -134,7 +147,7 @@ void Game::Advance()
 	if (_currentGameState == EndOfGame)
 	{
 		gameBoard->CleanBoard();
-		_currentGameState = InactiveTetrominio;
+		_currentGameState = StartGame;
 	}
 
 
@@ -151,8 +164,22 @@ void Game::Back()
 void Game::PickTetrominio()
 {
 	//Pick Random Tetriminio
+	if (_currentGameState == StartGame)
+	{
+		srand(time(0));
+		activeTetrominio = tetrominioMap[rand() % 6];
+	}
+	else
+	{
+		activeTetrominio = tetrominioMap[nextTetrominioId];	
+	}
+
 	srand(time(0));
-	activeTetrominio = tetrominioMap[rand() % 7];
+	nextTetrominioId = rand() % 7;
+	if (nextTetrominioId == 7) nextTetrominioId = 6;
+	nextTetrominio = nextTetrominioMap[nextTetrominioId];
+	
+
 	
 	//Save this in const?
 	int InitialX = BOARD_X + ((WIDTH_BOARD * TILE_SIZE) / 2) - TILE_SIZE;
@@ -280,32 +307,35 @@ void Game::CheckLinesCompletesInBoard()
 void Game::Update()
 {
 	//PickTetrominio
+	gameBoard->Update();
+	
+
 	switch (_currentGameState)
 	{
+		case StartGame:
 		case InactiveTetrominio:
 			PickTetrominio();
-			gameBoard->Update();
+			nextTetrominio->Redraw();
 			break;
 		case ActiveTetrominio:
+			nextTetrominio->Redraw();
 			if (_rTimer.TimerComplete())
 			{
 				UpdateGame();
 				_rTimer.ResetTimer();
 			}
-			gameBoard->Update();
 			activeTetrominio->Redraw();			
 			break;
 		case WaitingBoard:
+			nextTetrominio->Redraw();
 			if (!gameBoard->BoardAnimationActive())
 				_currentGameState = InactiveTetrominio;
-			gameBoard->Update();
 			break;
 		case EndOfGame:
-			gameBoard->Update();
+			nextTetrominio->Redraw();
 			EndOfGameAsset->Add();
 		break;
 	}
-
 	
 }
 
@@ -333,9 +363,20 @@ void Game::UpdateGame()
 
 Game::~Game()
 {
-	//delete gameBoard;
+	delete gameBoard;
 	gameBoard = nullptr;
+
+	delete EndOfGameAsset;
 	EndOfGameAsset = nullptr;
+
+	activeTetrominio = nullptr;
+	nextTetrominio = nullptr;
+
+	for (std::map<int, NextTetriminio*>::iterator it = nextTetrominioMap.begin(); it != nextTetrominioMap.end(); ++it)
+	{
+		delete (it->second);
+	}
+	nextTetrominioMap.clear();
 
 	for (std::map<int, Tetrimino*>::iterator it = tetrominioMap.begin(); it != tetrominioMap.end(); ++it)
 	{

@@ -14,7 +14,7 @@ bool GameEngine::InitVideo()
 
 bool GameEngine::CreateWindowRendered()
 {
-	window = SDL_CreateWindow("Tetris", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDHT, SCREEN_HEIGTH, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Tetris", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGTH, SDL_WINDOW_SHOWN);
 	if (window == NULL)
 	{
 		printf("Windows could not be created! SDL_Error: %s\n", SDL_GetError());
@@ -27,7 +27,7 @@ bool GameEngine::CreateWindowRendered()
 		printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		return false;
 	}
-	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDHT, SCREEN_WIDHT);
+	SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH, SCREEN_HEIGTH);
 
 	return true;
 }

@@ -142,6 +142,7 @@
     <ClCompile Include="IBlock.cpp" />
     <ClCompile Include="JBlock.cpp" />
     <ClCompile Include="LBlock.cpp" />
+    <ClCompile Include="NextTetriminio.cpp" />
     <ClCompile Include="OBlock.cpp" />
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="EngineTools.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="InputDefintion.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="NextTetriminio.h" />
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="EngineTools.h" />
     <ClInclude Include="GameEngine.h" />

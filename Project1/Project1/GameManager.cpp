@@ -3,6 +3,7 @@
 
 GameManager::GameManager()
 {
+	_spriteBackground = new SpriteBackground(BACKGROUND_PATH);
 	_game = new Game();
 	_inputHandler = InputHandler(_game);
 	EngineTools::InputService().RegisterInputHandler(&_inputHandler);
@@ -10,6 +11,7 @@ GameManager::GameManager()
 
 void GameManager::Update()
 {
+	_spriteBackground->Add();
 	_game->Update();
 }
 

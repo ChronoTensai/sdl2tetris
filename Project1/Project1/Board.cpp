@@ -3,7 +3,6 @@
 
 Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 {
-	bool swichtColor = false;
 	_height = *height;
 	_width = *width;
 
@@ -15,13 +14,8 @@ Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 		for (int j = 0; j < _width; j++)
 		{
 			logicMatriz[j + (_width*i)] = 0;
-			spriteMatriz[j + (_width*i)] =  *(new Sprite(boardTilePath, x + (tilesSize*j), y + (tilesSize*i), tilesSize, tilesSize));
-			spriteMatriz[j + (_width*i)].Tint(0, 0, 51);			
-			spriteMatriz[j + (_width*i)].Add();
-
-			swichtColor = !swichtColor;
+			spriteMatriz[j + (_width*i)] =  *(new Sprite(BOARD_TILE_PATH, x + (tilesSize*j), y + (tilesSize*i), tilesSize, tilesSize));
 		}
-		swichtColor = !swichtColor;
 	}
 }
 
@@ -45,11 +39,7 @@ void Board::Redraw()
 		for (int j = 0; j < _width; j++)
 		{
 			currentIndex = j + (_width*i);
-			if (logicMatriz[currentIndex] == 0)
-			{
-				spriteMatriz[currentIndex].Tint(0, 0, 51);
-			}
-			else if (AnimationActive && logicMatriz[currentIndex] == 2)
+			if (AnimationActive && logicMatriz[currentIndex] == 2)
 			{
 				if (_frameTimer.CurrentFrame() % 2 == 0)
 				{
@@ -59,12 +49,13 @@ void Board::Redraw()
 				{
 					spriteMatriz[currentIndex].Tint(0, 0, 51);
 				}
+				spriteMatriz[currentIndex].Add();
 			}			
 			else if(logicMatriz[currentIndex] == 1)
 			{
 				spriteMatriz[currentIndex].Tint(224, 224, 224);
-			}
-			spriteMatriz[currentIndex].Add();
+				spriteMatriz[currentIndex].Add();
+			}			
 		}
 	}
 }

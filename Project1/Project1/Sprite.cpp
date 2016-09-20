@@ -14,8 +14,6 @@ Sprite::Sprite(std::string path, int posX, int posY, int width, int height)
 	sourceTexture = EngineTools::RenderService().LoadTexture(path);
 }
 
-
-
 void Sprite::PositionX(int value)
 {
 	Rect.x = value;
@@ -59,16 +57,9 @@ void Sprite::Clear()
 	drawed = false;	
 }
 
-Sprite* Sprite::Clone()
+void Sprite::Tint(Color color)
 {
-	return  new Sprite(sourceTexture, Rect);
-}
-
-Sprite::Sprite(SDL_Texture* srcTexture, SDL_Rect rect)
-{
-	drawed = false;
-	Rect = rect;	
-	sourceTexture = srcTexture;
+	EngineTools::RenderService().TintTexture(sourceTexture, color.R, color.G, color.B);
 }
 
 void Sprite::Tint(float r, float g, float b)
@@ -77,6 +68,27 @@ void Sprite::Tint(float r, float g, float b)
 }
 
 Sprite::~Sprite()
+{
+	SDL_DestroyTexture(sourceTexture);
+}
+
+
+
+SpriteBackground::SpriteBackground()
+{
+}
+
+SpriteBackground::SpriteBackground(std::string path)
+{
+	sourceTexture = EngineTools::RenderService().LoadTexture(path);
+}
+
+void SpriteBackground::Add()
+{
+	EngineTools::RenderService().RenderBackground(sourceTexture);
+}
+
+SpriteBackground::~SpriteBackground()
 {
 	SDL_DestroyTexture(sourceTexture);
 }

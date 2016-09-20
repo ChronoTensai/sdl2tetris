@@ -23,14 +23,13 @@ public:
 	void DownLines();
 	bool BoardAnimationActive();
 private:
-	const string  boardTilePath = "Assets/Gameplay/trinomiotile.jpg";
+	const string  BOARD_TILE_PATH = "Assets/Gameplay/trinomiotile.jpg";
 	void Redraw();
 	bool AnimationActive;
 	int _height;
 	int _width;
 	int*   logicMatriz;
 	Sprite* spriteMatriz;
-	void EndAnimation();
 		
 	//Change to time
 	FrameTimer _frameTimer;

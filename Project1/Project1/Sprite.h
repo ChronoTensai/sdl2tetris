@@ -19,7 +19,7 @@ class Sprite
 		Sprite(std::string path, int x, int y, int w, int h);
 		void Add();
 		void Clear();
-		Sprite* Clone();
+		void Tint(Color color);
 		void Tint(float r, float g, float b);
 		void PositionX(int value);
 		void PositionY(int value);
@@ -27,10 +27,20 @@ class Sprite
 		void Height(int value);
 		~Sprite();
 	private:
-		Sprite(SDL_Texture* srcTexture, SDL_Rect rect);
 		bool drawed;
 		SDL_Texture* sourceTexture;
 		SDL_Rect Rect;
+};
+
+class SpriteBackground
+{
+	public:
+		SpriteBackground();
+		SpriteBackground(std::string path);
+		void Add();
+		~SpriteBackground();
+	private:		
+		SDL_Texture* sourceTexture;		
 };
 
 
