@@ -193,8 +193,8 @@ void Game::PickTetrominio()
 
 	srand(time(0));
 	int nextTetrominioId = rand() % 7;
-	//if (nextTetrominioId == 7) nextTetrominioId = 6;
-	nextTetrominio = tetrominioMap[6];	
+	if (nextTetrominioId == 7) nextTetrominioId = 6;
+	nextTetrominio = tetrominioMap[nextTetrominioId];	
 
 	
 	//Save this in const?
