@@ -49,12 +49,12 @@ void Board::Redraw()
 				{
 					spriteMatriz[currentIndex].Tint(0, 0, 51);
 				}
-				spriteMatriz[currentIndex].Add();
+				spriteMatriz[currentIndex].Redraw();
 			}			
 			else if(logicMatriz[currentIndex] == 1)
 			{
 				spriteMatriz[currentIndex].Tint(224, 224, 224);
-				spriteMatriz[currentIndex].Add();
+				spriteMatriz[currentIndex].Redraw();
 			}			
 		}
 	}

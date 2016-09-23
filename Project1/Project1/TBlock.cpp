@@ -1,6 +1,6 @@
 #include "Tetrimino.h"
 
-TBlock::TBlock(const int* tileSize) : Tetrimino(tileSize)
+TBlock::TBlock(const int* tileSize, const int* nextX, const int* nextY) : Tetrimino(tileSize, nextX, nextY)
 {
 	int auxMatriz[4][4] =
 	{
@@ -13,12 +13,15 @@ TBlock::TBlock(const int* tileSize) : Tetrimino(tileSize)
 	std::memcpy(orginalMatriz, auxMatriz, sizeof(orginalMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);	
 	_rotateAvailable = RotateAvailable::All;
 
+	Color tintColor;
 	tintColor.R = DEFAULT_COLOR;
 	tintColor.G = 0;
 	tintColor.B = DEFAULT_COLOR;
 
-	Draw();
+	Draw(tintColor, nextX, nextY);
 }
+
+
 
 TBlock::~TBlock()
 {

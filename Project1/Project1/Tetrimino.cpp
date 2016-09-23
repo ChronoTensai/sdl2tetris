@@ -1,16 +1,19 @@
 #include "Tetrimino.h"
 
-Tetrimino::Tetrimino()
-{
-}
-
-Tetrimino::Tetrimino(const int* tileSize)
+Tetrimino::Tetrimino(const int * tileSize, const int * nextX, const int * nextY)
 {
 	_tileSize = tileSize;
 	logicMatriz = new int[SIZE_MATRIZ * SIZE_MATRIZ];
 	orginalMatriz = new int[SIZE_MATRIZ * SIZE_MATRIZ];
 	spriteMatriz = new Sprite[TILES_PER_ITEM];
+	nextSpriteMatriz = new Sprite[TILES_PER_ITEM];
 }
+
+Tetrimino::Tetrimino()
+{
+}
+
+
 
 //Rotation
 int* Tetrimino::GenerateMatrizRotate()
@@ -176,10 +179,18 @@ void Tetrimino::Redraw()
 				spriteMatriz[spriteIndex].Clear();
 				spriteMatriz[spriteIndex].PositionX(_spriteX + (j* (*_tileSize)) );
 				spriteMatriz[spriteIndex].PositionY(_spriteY + (i*(*_tileSize)) );
-				spriteMatriz[spriteIndex].Add();
+				spriteMatriz[spriteIndex].Redraw();
 				spriteIndex++;
 			}
 		}
+	}
+}
+
+void Tetrimino::RedrawNext()
+{
+	for (int i = 0; i < TILES_PER_ITEM; i++)
+	{
+		nextSpriteMatriz[i].Redraw();
 	}
 }
 
@@ -195,7 +206,7 @@ void Tetrimino::ResetLogicMatrix()
 	CalculateLogicValues(orginalMatriz);
 }
 
-void Tetrimino::Draw()
+void Tetrimino::Draw(Color color, const int * nextX, const int * nextY)
 {
 	int spriteIndex = 0;
 
@@ -206,7 +217,10 @@ void Tetrimino::Draw()
 			if (orginalMatriz[j + (SIZE_MATRIZ*i)] == 1)
 			{
 				spriteMatriz[spriteIndex] = *(new Sprite(TILE_PATH, j**_tileSize, i**_tileSize, *_tileSize, *_tileSize));
-				spriteMatriz[spriteIndex].Tint(tintColor.R, tintColor.G, tintColor.B);				
+				spriteMatriz[spriteIndex].Tint(color);
+
+				nextSpriteMatriz[spriteIndex] = *(new Sprite(TILE_PATH, *nextX + j**_tileSize, *nextY +i**_tileSize, *_tileSize, *_tileSize));
+				nextSpriteMatriz[spriteIndex].Tint(color);
 				spriteIndex++;
 			}			
 		}

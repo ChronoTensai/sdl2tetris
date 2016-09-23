@@ -17,7 +17,7 @@ class Sprite
 	public:
 		Sprite();
 		Sprite(std::string path, int x, int y, int w, int h);
-		void Add();
+		void Redraw();
 		void Clear();
 		void Tint(Color color);
 		void Tint(float r, float g, float b);

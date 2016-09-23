@@ -10,26 +10,13 @@ Game::Game()
 
 void Game::CreateTetrominioPool()
 {
-	tetrominioMap[0] = new IBlock(&TILE_SIZE);
-	nextTetrominioMap[0] = new NextIBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
-
-	tetrominioMap[1] = new JBlock(&TILE_SIZE);
-	nextTetrominioMap[1] = new NextJBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
-
-	tetrominioMap[2] = new LBlock(&TILE_SIZE);
-	nextTetrominioMap[2] = new NextLBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
-
-	tetrominioMap[3] = new OBlock(&TILE_SIZE);
-	nextTetrominioMap[3] = new NextOBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
-
-	tetrominioMap[4] = new SBlock(&TILE_SIZE);
-	nextTetrominioMap[4] = new NextSBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
-
-	tetrominioMap[5] = new TBlock(&TILE_SIZE);
-	nextTetrominioMap[5] = new NextTBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
-
-	tetrominioMap[6] = new ZBlock(&TILE_SIZE);
-	nextTetrominioMap[6] = new NextZBlock(&TILE_SIZE, NEXT_TETROMINIO_X, NEXT_TETROMINIO_Y);
+	tetrominioMap[0] = new ZBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
+	tetrominioMap[1] = new JBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
+	tetrominioMap[2] = new LBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
+	tetrominioMap[3] = new OBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
+	tetrominioMap[4] = new SBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
+	tetrominioMap[5] = new TBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
+	tetrominioMap[6] = new IBlock(&TILE_SIZE, &NEXT_TETROMINIO_X, &NEXT_TETROMINIO_Y);
 }
 
 
@@ -46,27 +33,57 @@ void Game::OnPressUp()
 			//Rotate and move Right
 			if (LogicTetrominioX + activeTetrominio->LogicR.OffsetX < 0)
 			{
-				if (!CheckCollision(CollisionType::RIGHT, activeTetrominio->GetLogicMatriz()))
+				int moveCount = 0;
+				while (LogicTetrominioX + activeTetrominio->LogicR.OffsetX < 0)
 				{
-					while (LogicTetrominioX + activeTetrominio->LogicR.OffsetX < 0)
+
+					if (!CheckCollision(CollisionType::RIGHT, rotateMatriz))
 					{
 						LogicTetrominioX++;
 						activeTetrominio->MoveRight();
-					}					
-					applyRotate = true;
+						moveCount++;
+						applyRotate = true;
+					}
+					else
+					{
+						while (moveCount != 0)
+						{
+							LogicTetrominioX--;
+							activeTetrominio->MoveLeft();
+							moveCount--;
+						}
+
+						applyRotate = false;
+						break;
+					}
 				}
 			}
 			//Rotate and move Left
 			else if (LogicTetrominioX + activeTetrominio->LogicR.ColisionWidth() > WIDTH_BOARD)
 			{
-				if (!CheckCollision(CollisionType::LEFT, activeTetrominio->GetLogicMatriz()))
+				
+				int moveCount = 0;
+				while (LogicTetrominioX + activeTetrominio->LogicR.ColisionWidth() > WIDTH_BOARD)
 				{
-					while (LogicTetrominioX + activeTetrominio->LogicR.ColisionWidth() > WIDTH_BOARD)
+
+					if (!CheckCollision(CollisionType::LEFT, rotateMatriz))
 					{
 						LogicTetrominioX--;
 						activeTetrominio->MoveLeft();
-					}					
-					applyRotate = true;
+						moveCount++;
+						applyRotate = true;
+					}
+					else
+					{
+						while (moveCount != 0)
+						{
+							LogicTetrominioX++;
+							activeTetrominio->MoveRight();
+							moveCount--;
+						}
+						applyRotate = false;
+						break;
+					}
 				}
 			}
 			else if (!CheckCollision(CollisionType::ROTATE, rotateMatriz))
@@ -171,14 +188,13 @@ void Game::PickTetrominio()
 	}
 	else
 	{
-		activeTetrominio = tetrominioMap[nextTetrominioId];	
+		activeTetrominio = nextTetrominio;	
 	}
 
 	srand(time(0));
-	nextTetrominioId = rand() % 7;
-	if (nextTetrominioId == 7) nextTetrominioId = 6;
-	nextTetrominio = nextTetrominioMap[nextTetrominioId];
-	
+	int nextTetrominioId = rand() % 7;
+	//if (nextTetrominioId == 7) nextTetrominioId = 6;
+	nextTetrominio = tetrominioMap[6];	
 
 	
 	//Save this in const?
@@ -233,6 +249,9 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 	int currentTetrominioIndex;
 
 	//Hard to understand
+	printf("-------------\n");
+
+
 	for (int i = LogicCollisionTetrominioY + activeTetrominio->LogicR.OffsetY; i <  LogicCollisionTetrominioY + activeTetrominio->LogicR.ColisionHeight(); i++)
 	{
 		for (int j = LogicCollisionTetrominioX + activeTetrominio->LogicR.OffsetX ; j < LogicCollisionTetrominioX + activeTetrominio->LogicR.ColisionWidth(); j++)
@@ -240,8 +259,14 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 			currentBoardIndex = WIDTH_BOARD * i + j;
 			currentTetrominioIndex = tetrominioSizeMatriz * (i - LogicCollisionTetrominioY) + (j - LogicCollisionTetrominioX);
 
-			if (currentBoardIndex >= 0 &&  currentTetrominioIndex > 0 && tetrominioMatriz[currentTetrominioIndex] != 0)
+			if (collision == LEFT)
 			{
+				printf("IndexCheck: %d  valor: %d\n", currentTetrominioIndex, tetrominioMatriz[currentTetrominioIndex]);
+			}
+
+			if (currentBoardIndex >= 0 &&  currentTetrominioIndex >= 0 && tetrominioMatriz[currentTetrominioIndex] != 0)
+			{
+				
 				if (tetrominioMatriz[currentTetrominioIndex] == boardMatriz[currentBoardIndex])
 				{
 					//Out top bounds
@@ -257,12 +282,16 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 						}
 					}
 					//Collision with other Tetrominio
+					printf("-------TRUE------\n");
+
 					return true;					
 				}				
 			}
 			
 		}
 	}
+	printf("-------FALSE------\n");
+
 	return false;
 }
 
@@ -315,10 +344,10 @@ void Game::Update()
 		case StartGame:
 		case InactiveTetrominio:
 			PickTetrominio();
-			nextTetrominio->Redraw();
+			nextTetrominio->RedrawNext();
 			break;
 		case ActiveTetrominio:
-			nextTetrominio->Redraw();
+			nextTetrominio->RedrawNext();
 			if (_rTimer.TimerComplete())
 			{
 				UpdateGame();
@@ -327,13 +356,13 @@ void Game::Update()
 			activeTetrominio->Redraw();			
 			break;
 		case WaitingBoard:
-			nextTetrominio->Redraw();
+			nextTetrominio->RedrawNext();
 			if (!gameBoard->BoardAnimationActive())
 				_currentGameState = InactiveTetrominio;
 			break;
 		case EndOfGame:
-			nextTetrominio->Redraw();
-			EndOfGameAsset->Add();
+			nextTetrominio->RedrawNext();
+			EndOfGameAsset->Redraw();
 		break;
 	}
 	
@@ -370,17 +399,5 @@ Game::~Game()
 	EndOfGameAsset = nullptr;
 
 	activeTetrominio = nullptr;
-	nextTetrominio = nullptr;
-
-	for (std::map<int, NextTetriminio*>::iterator it = nextTetrominioMap.begin(); it != nextTetrominioMap.end(); ++it)
-	{
-		delete (it->second);
-	}
-	nextTetrominioMap.clear();
-
-	for (std::map<int, Tetrimino*>::iterator it = tetrominioMap.begin(); it != tetrominioMap.end(); ++it)
-	{
-		delete (it->second);
-	}
-	tetrominioMap.clear();
+	nextTetrominio = nullptr;	
 }

@@ -1,6 +1,6 @@
 #include "Tetrimino.h"
 
-JBlock::JBlock(const int* tileSize) : Tetrimino(tileSize)
+JBlock::JBlock(const int* tileSize, const int* nextX, const int* nextY) : Tetrimino(tileSize, nextX, nextY)
 {
 	int auxMatriz[4][4] =
 	{
@@ -14,12 +14,15 @@ JBlock::JBlock(const int* tileSize) : Tetrimino(tileSize)
 	std::memcpy(orginalMatriz, auxMatriz, sizeof(orginalMatriz) * SIZE_MATRIZ * SIZE_MATRIZ);	
 	_rotateAvailable = RotateAvailable::All;
 
+	Color tintColor;
 	tintColor.R = 0;
 	tintColor.G = 0;
 	tintColor.B = DEFAULT_COLOR;
 
-	Draw();
+	Draw(tintColor, nextX, nextY);
 }
+
+
 
 JBlock::~JBlock()
 {

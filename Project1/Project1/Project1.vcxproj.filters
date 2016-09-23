@@ -67,12 +67,6 @@
     <Filter Include="Source Files\Engine\Timer">
       <UniqueIdentifier>{a9d8a021-87bb-4575-92bd-e8ae57072ad5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Screens\Game\Tetriminios\Next">
-      <UniqueIdentifier>{63fbf675-61e0-4fb1-8b49-d2f564c17a1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Screens\Game\Tetriminios\Next">
-      <UniqueIdentifier>{54311396-07f6-4d40-ad97-af33a151d785}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -138,9 +132,6 @@
     <ClCompile Include="Timer.cpp">
       <Filter>Source Files\Engine\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="NextTetriminio.cpp">
-      <Filter>Source Files\Screens\Game\Tetriminios\Next</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Main.h">
@@ -190,9 +181,6 @@
     </ClInclude>
     <ClInclude Include="Timer.h">
       <Filter>Header Files\Engine\Timer</Filter>
-    </ClInclude>
-    <ClInclude Include="NextTetriminio.h">
-      <Filter>Header Files\Screens\Game\Tetriminios\Next</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

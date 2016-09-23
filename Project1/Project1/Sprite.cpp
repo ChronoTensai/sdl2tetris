@@ -45,7 +45,7 @@ void Sprite::Height(int value)
 
 
 
-void Sprite::Add()
+void Sprite::Redraw()
 {
 	drawed = true;
 	//Check update texture

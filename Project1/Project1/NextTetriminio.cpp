@@ -19,7 +19,7 @@ void NextTetriminio::Redraw()
 		{
 			if (logicMatriz[j + (SIZE_MATRIZ*i)] == 1)
 			{
-				spriteMatriz[spriteIndex].Add();
+				spriteMatriz[spriteIndex].Redraw();
 				spriteIndex++;
 			}
 		}

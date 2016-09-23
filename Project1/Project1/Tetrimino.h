@@ -29,7 +29,7 @@ class Tetrimino
 	public:
 		const int SIZE_MATRIZ = 4;
 
-		Tetrimino(const int* tileSize);
+		Tetrimino(const int* tileSize, const int* nextX, const int* nextY);
 		Tetrimino();
 		virtual ~Tetrimino();
 
@@ -43,18 +43,19 @@ class Tetrimino
 		void MoveRight();
 		void MoveDown();
 		void Redraw();
+		void RedrawNext();
 		void SetPosition(int x, int y);
 		void ResetLogicMatrix();
 	protected:
 		const int DEFAULT_COLOR = 255;
-		Color tintColor;		
 		Sprite* spriteMatriz;
 		enum RotateAvailable { None, Two, All };
 		RotateAvailable _rotateAvailable = RotateAvailable::None;
 		int* logicMatriz;
 		int* orginalMatriz;
-		void Draw();		
+		void Draw(Color color, const int* nextX, const int* nextY);
 	private:
+		Sprite* nextSpriteMatriz;
 		const int TILES_PER_ITEM = 4;
 		const int* _tileSize;
 		const string TILE_PATH = "Assets/Gameplay/trinomiotile.jpg";
@@ -70,14 +71,14 @@ class Tetrimino
 class IBlock : public Tetrimino
 {
 public:
-	IBlock(const int* tileSize);
+	IBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~IBlock();
 };
 
 class LBlock : public Tetrimino
 {
 public:
-	LBlock(const int* tileSize);
+	LBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~LBlock();
 };
 
@@ -86,21 +87,21 @@ class JBlock : public Tetrimino
 {
 
 public:
-	JBlock(const int* tileSize);
+	JBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~JBlock();
 };
 
 class ZBlock : public Tetrimino
 {
 public:
-	ZBlock(const int* tileSize);
+	ZBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~ZBlock();
 };
 
 class TBlock : public Tetrimino
 {
 public:
-	TBlock(const int* tileSize);
+	TBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~TBlock();
 };
 
@@ -108,7 +109,7 @@ class SBlock : public Tetrimino
 {
 
 public:
-	SBlock(const int* tileSize);
+	SBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~SBlock();
 };
 
@@ -116,7 +117,7 @@ class OBlock : public Tetrimino
 {
 
 public:
-	OBlock(const int* tileSize);
+	OBlock(const int* tileSize, const int* nextX, const int* nextY);
 	~OBlock();
 };
 
