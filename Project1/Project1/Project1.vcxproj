@@ -85,7 +85,7 @@
     <Link>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib\sdl2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y "$(ProjectDir)\bin\sdl2\*.dll" "$(OutDir)"</Command>
@@ -161,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
+    <ClInclude Include="GameBackground.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="InputDefintion.h" />
     <ClInclude Include="InputHandler.h" />

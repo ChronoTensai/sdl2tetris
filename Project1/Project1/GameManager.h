@@ -10,11 +10,9 @@ public:
 	
 	GameManager();
 	void Update();
-	~GameManager();
+	virtual ~GameManager();
 private:
-	const string BACKGROUND_PATH = "Assets/Gameplay/background.jpg";
-	SpriteBackground* _spriteBackground;
-	Game* _game;
-	InputHandler _inputHandler;
+	Game _game;
+	InputHandler _inputHandler = InputHandler(&_game);
 };
 

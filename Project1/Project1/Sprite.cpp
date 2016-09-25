@@ -83,7 +83,7 @@ SpriteBackground::SpriteBackground(std::string path)
 	sourceTexture = EngineTools::RenderService().LoadTexture(path);
 }
 
-void SpriteBackground::Add()
+void SpriteBackground::Redraw()
 {
 	EngineTools::RenderService().RenderBackground(sourceTexture);
 }

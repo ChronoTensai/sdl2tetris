@@ -7,6 +7,7 @@ class RecursiveTimer
 public:
 	RecursiveTimer() {};
 	RecursiveTimer(float delay);
+	void SetDelay(float delay);
 	void ResetTimer();
 	bool TimerComplete();
 	~RecursiveTimer();

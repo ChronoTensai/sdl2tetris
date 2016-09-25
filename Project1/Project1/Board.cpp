@@ -17,6 +17,8 @@ Board::Board(const int* height, const int* width,int x, int y, int tilesSize)
 			spriteMatriz[j + (_width*i)] =  *(new Sprite(BOARD_TILE_PATH, x + (tilesSize*j), y + (tilesSize*i), tilesSize, tilesSize));
 		}
 	}
+
+	CreateColorArray();
 }
 
 
@@ -31,6 +33,30 @@ void Board::CleanBoard()
 	}
 }
 
+void Board::CreateColorArray()
+{	
+	_colorTiles[0] = Color(DEFAULT_COLOR, DEFAULT_COLOR, DEFAULT_COLOR);;
+	_colorTiles[1] = Color(0, DEFAULT_COLOR, DEFAULT_COLOR);
+	_colorTiles[2] = Color(0, 0, DEFAULT_COLOR);
+	_colorTiles[3] = Color(DEFAULT_COLOR, DEFAULT_COLOR/2, 0);
+	_colorTiles[4] = Color(DEFAULT_COLOR, DEFAULT_COLOR, 0);
+	_colorTiles[5] = Color(0, DEFAULT_COLOR, 0);
+	_colorTiles[6] = Color(DEFAULT_COLOR, 0, DEFAULT_COLOR);
+	_colorTiles[7] = Color(DEFAULT_COLOR, 0, 0);
+
+	currentBoardColor = &_colorTiles[currentIdColor];
+}
+
+void Board::ChangeToNextColor()
+{
+	currentIdColor++;
+	if (currentIdColor == COLOR_LENGHT)
+	{
+		currentIdColor = 0;
+	}
+	currentBoardColor = &_colorTiles[currentIdColor];	
+}
+
 void Board::Redraw()
 {
 	int currentIndex;
@@ -43,17 +69,17 @@ void Board::Redraw()
 			{
 				if (_frameTimer.CurrentFrame() % 2 == 0)
 				{
-					spriteMatriz[currentIndex].Tint(224, 224, 224);
+					spriteMatriz[currentIndex].Tint(*currentBoardColor);
 				}
 				else
 				{
-					spriteMatriz[currentIndex].Tint(0, 0, 51);
+					spriteMatriz[currentIndex].Tint(backgroundColor);
 				}
 				spriteMatriz[currentIndex].Redraw();
 			}			
 			else if(logicMatriz[currentIndex] == 1)
 			{
-				spriteMatriz[currentIndex].Tint(224, 224, 224);
+				spriteMatriz[currentIndex].Tint(*currentBoardColor);
 				spriteMatriz[currentIndex].Redraw();
 			}			
 		}

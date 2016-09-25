@@ -3,9 +3,6 @@
 Game::Game()
 {
 	CreateTetrominioPool();
-	gameBoard = new Board(&HEIGHT_BOARD, &WIDTH_BOARD, BOARD_X, BOARD_Y, TILE_SIZE);
-	_rTimer = RecursiveTimer(_timeToDownTetrominio);
-	EndOfGameAsset = new Sprite(EndOfGameAssetPath, BOARD_X + WIDTH_BOARD*TILE_SIZE/2 - EndOfGameSize/2, BOARD_Y + HEIGHT_BOARD*TILE_SIZE / 2 - EndOfGameSize / 2, EndOfGameSize, EndOfGameSize);
 }
 
 void Game::CreateTetrominioPool()
@@ -163,7 +160,7 @@ void Game::Advance()
 	printf("Advance \n");
 	if (_currentGameState == EndOfGame)
 	{
-		gameBoard->CleanBoard();
+		gameBoard.CleanBoard();
 		_currentGameState = StartGame;
 	}
 
@@ -214,6 +211,7 @@ bool Game::CheckBottomBoard()
 {
 	if (LogicTetrominioY + activeTetrominio->LogicR.ColisionHeight() +1 > HEIGHT_BOARD)
 	{
+		_currentGameState = WaitingBoard;
 		return true;
 	}
 	return false;
@@ -242,27 +240,19 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 	int tetrominioSizeMatriz = activeTetrominio->SIZE_MATRIZ;
 	
 	//Board Data
-	int* boardMatriz = gameBoard->GetLogicMatriz();
+	int* boardMatriz = gameBoard.GetLogicMatriz();
 
 	//Auxiliar vars
 	int currentBoardIndex;
 	int currentTetrominioIndex;
 
 	//Hard to understand
-	printf("-------------\n");
-
-
 	for (int i = LogicCollisionTetrominioY + activeTetrominio->LogicR.OffsetY; i <  LogicCollisionTetrominioY + activeTetrominio->LogicR.ColisionHeight(); i++)
 	{
 		for (int j = LogicCollisionTetrominioX + activeTetrominio->LogicR.OffsetX ; j < LogicCollisionTetrominioX + activeTetrominio->LogicR.ColisionWidth(); j++)
 		{
 			currentBoardIndex = WIDTH_BOARD * i + j;
 			currentTetrominioIndex = tetrominioSizeMatriz * (i - LogicCollisionTetrominioY) + (j - LogicCollisionTetrominioX);
-
-			if (collision == LEFT)
-			{
-				printf("IndexCheck: %d  valor: %d\n", currentTetrominioIndex, tetrominioMatriz[currentTetrominioIndex]);
-			}
 
 			if (currentBoardIndex >= 0 &&  currentTetrominioIndex >= 0 && tetrominioMatriz[currentTetrominioIndex] != 0)
 			{
@@ -272,7 +262,7 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 					//Out top bounds
 					if (collision == DOWN)
 					{
-						if (LogicTetrominioY - activeTetrominio->LogicR.OffsetY <= 0)
+						if (LogicTetrominioY + activeTetrominio->LogicR.OffsetY <= 0)
 						{
 							_currentGameState = EndOfGame;
 						}
@@ -282,16 +272,12 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 						}
 					}
 					//Collision with other Tetrominio
-					printf("-------TRUE------\n");
-
 					return true;					
 				}				
 			}
 			
 		}
 	}
-	printf("-------FALSE------\n");
-
 	return false;
 }
 
@@ -300,7 +286,7 @@ bool Game::CheckCollision(CollisionType collision, int* tetrominioMatriz)
 //We do this here to keep the board independ for the tetris logic
 void Game::CheckLinesCompletesInBoard()
 {
-	int* boardMatriz = gameBoard->GetLogicMatriz();
+	int* boardMatriz = gameBoard.GetLogicMatriz();
 	vector<int> linesToDelete;
 	vector<int>::iterator it = linesToDelete.begin();
 
@@ -325,10 +311,27 @@ void Game::CheckLinesCompletesInBoard()
 
 	if (!linesToDelete.empty())
 	{
-		gameBoard->DeleteRowsAndDown(linesToDelete);		
+		linesCount += linesToDelete.size();
+		gameBoard.DeleteRowsAndDown(linesToDelete);
+		if (linesCount >= LINES_TO_CHANGE_LEVEL)
+		{
+			linesCount = 0;
+			gameBoard.ChangeToNextColor();
+			if (_timeToDownTetrominio > MIN_SPEED)
+			{
+				_timeToDownTetrominio -= DELTA_SPEED_NEW_LEVEL;
+			}
+			else
+			{
+				_timeToDownTetrominio = MIN_SPEED;
+			}
+			_rTimer.SetDelay(_timeToDownTetrominio);
+		}
 	}
 	else
+	{
 		_currentGameState = InactiveTetrominio;
+	}
 }
 
 
@@ -336,8 +339,9 @@ void Game::CheckLinesCompletesInBoard()
 void Game::Update()
 {
 	//PickTetrominio
-	gameBoard->Update();
-	
+	_gameBackground.RedrawBackground();
+	gameBoard.Update();
+
 
 	switch (_currentGameState)
 	{
@@ -350,21 +354,25 @@ void Game::Update()
 			nextTetrominio->RedrawNext();
 			if (_rTimer.TimerComplete())
 			{
-				UpdateGame();
+				UpdateGame();				
 				_rTimer.ResetTimer();
 			}
-			activeTetrominio->Redraw();			
+			else
+			{
+				activeTetrominio->Redraw();
+			}
 			break;
 		case WaitingBoard:
 			nextTetrominio->RedrawNext();
-			if (!gameBoard->BoardAnimationActive())
+			if (!gameBoard.BoardAnimationActive())
 				_currentGameState = InactiveTetrominio;
 			break;
 		case EndOfGame:
 			nextTetrominio->RedrawNext();
-			EndOfGameAsset->Redraw();
+			EndOfGameAsset.Redraw();
 		break;
 	}
+	_gameBackground.RedrawForeground();
 	
 }
 
@@ -375,8 +383,8 @@ void Game::UpdateGame()
 	//CheckColision
 	if (LogicTetrominioY + activeTetrominio->LogicR.H >= 0 && (CheckBottomBoard() || CheckCollision(CollisionType::DOWN, activeTetrominio->GetLogicMatriz())))
 	{
-		// Update Board
-		gameBoard->UpdateLogicMatriz(activeTetrominio->GetLogicMatriz(), activeTetrominio->SIZE_MATRIZ, LogicTetrominioX, LogicTetrominioY);
+		// Update Board		
+		gameBoard.UpdateLogicMatriz(activeTetrominio->GetLogicMatriz(), activeTetrominio->SIZE_MATRIZ, LogicTetrominioX, LogicTetrominioY);
 		if (_currentGameState != EndOfGame)
 		{
 			CheckLinesCompletesInBoard();
@@ -384,20 +392,15 @@ void Game::UpdateGame()
 	}
 	else
 	{
-		LogicTetrominioY++;
+		LogicTetrominioY++;		
 		activeTetrominio->MoveDown();
+		activeTetrominio->Redraw();
 	}
 }
 
 
 Game::~Game()
 {
-	delete gameBoard;
-	gameBoard = nullptr;
-
-	delete EndOfGameAsset;
-	EndOfGameAsset = nullptr;
-
 	activeTetrominio = nullptr;
-	nextTetrominio = nullptr;	
+	nextTetrominio = nullptr;
 }

@@ -8,6 +8,11 @@ RecursiveTimer::RecursiveTimer(float delay)
 	_targetTime = SDL_GetTicks() + delay;
 }
 
+void RecursiveTimer::SetDelay(float delay) 
+{
+	_delay = delay;
+}
+
 void RecursiveTimer::ResetTimer()
 {
 	_targetTime = SDL_GetTicks() + _delay;

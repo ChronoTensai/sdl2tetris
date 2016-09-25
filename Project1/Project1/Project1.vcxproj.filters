@@ -182,5 +182,8 @@
     <ClInclude Include="Timer.h">
       <Filter>Header Files\Engine\Timer</Filter>
     </ClInclude>
+    <ClInclude Include="GameBackground.h">
+      <Filter>Header Files\Screens\Game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
